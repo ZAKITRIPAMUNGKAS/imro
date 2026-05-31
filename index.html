@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>E-Modul Ilmu Kalam - Mobile App</title>
+    
+    <!-- Menggunakan Tailwind CSS via CDN untuk styling modern dan cepat -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Menggunakan Lucide Icons untuk ikon menu -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Styles untuk melengkapi Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e2e8f0; /* Latar belakang desktop */
+        }
+        
+        h1, h2, h3, .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Styling untuk frame HP di Desktop */
+        .app-emulator {
+            width: 100%;
+            height: 100dvh;
+            background-color: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Saat di layar besar (Desktop/Tablet), buat terlihat seperti HP */
+        @media (min-width: 640px) {
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                background-image: radial-gradient(circle at center, #cbd5e1 0%, #94a3b8 100%);
+            }
+            .app-emulator {
+                width: 400px;
+                height: 850px;
+                max-height: 95vh;
+                border-radius: 40px;
+                border: 12px solid #0f172a;
+            }
+        }
+
+        /* Animasi Transisi Halaman */
+        .page-slide-up {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+        }
+        .page-slide-in-right {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        .page-slide-in-right.active {
+            transform: translateX(0);
+        }
+
+        /* Custom Scrollbar untuk area konten */
+        .scroll-area::-webkit-scrollbar {
+            width: 4px;
+        }
+        .scroll-area::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        /* Efek klik tombol */
+        .menu-btn {
+            transition: transform 0.1s;
+        }
+        .menu-btn:active {
+            transform: scale(0.92);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-800">
+
+    <!-- FRAME APLIKASI UTAMA -->
+    <div class="app-emulator flex flex-col">
+
+        <!-- ========================================== -->
+        <!-- 1. SPLASH SCREEN -->
+        <!-- ========================================== -->
+        <div id="splashScreen" class="absolute inset-0 z-50 bg-gradient-to-br from-teal-700 to-indigo-900 flex flex-col items-center justify-center p-6 text-white page-slide-up">
+            
+            <!-- Ornamen Dekoratif Latar Belakang -->
+            <div class="absolute top-10 left-10 w-32 h-32 bg-teal-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-40 h-40 bg-indigo-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
+
+            <div class="relative z-10 text-center flex flex-col items-center">
+                <!-- Ikon / Logo Aplikasi -->
+                <div class="w-28 h-28 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl flex items-center justify-center mb-6 shadow-lg">
+                    <i data-lucide="book-open" class="w-14 h-14 text-teal-300"></i>
+                </div>
+                
+                <h1 class="text-3xl font-extrabold tracking-tight mb-2">E-MODUL</h1>
+                <h2 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-300 mb-4">ILMU KALAM</h2>
+                <p class="text-teal-100 text-sm max-w-[250px] leading-relaxed mb-12 opacity-80">
+                    Media Pembelajaran Interaktif Teologi Islam Tingkat MA/SMA
+                </p>
+
+                <!-- Tombol Mulai -->
+                <button onclick="startApp()" class="group relative px-8 py-4 bg-white text-teal-800 font-bold rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all flex items-center gap-2 active:scale-95">
+                    Mulai Belajar
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </div>
+
+            <div class="absolute bottom-6 text-xs text-teal-200/50">
+                Versi 1.0.0
+            </div>
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- 2. HALAMAN MENU UTAMA (HOME) -->
+        <!-- ========================================== -->
+        <div id="homeScreen" class="flex-1 flex flex-col w-full h-full relative scroll-area overflow-y-auto">
+            
+            <!-- Header Melengkung -->
+            <div class="bg-gradient-to-r from-teal-600 to-teal-800 pt-12 pb-16 px-6 rounded-b-[40px] shadow-md relative z-10 text-white">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <p class="text-teal-100 text-sm">Selamat Datang,</p>
+                        <h2 class="text-xl font-bold font-outfit">Pelajar Muslim</h2>
+                    </div>
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                </div>
+
+                <!-- Banner Info -->
+                <div class="bg-white/10 border border-white/20 rounded-2xl p-4 backdrop-blur-md">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-teal-400/30 p-2 rounded-lg">
+                            <i data-lucide="award" class="w-6 h-6 text-teal-100"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-teal-100">Materi Aktif</p>
+                            <p class="font-semibold text-sm">Ruang Lingkup Ilmu Kalam</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Konten & Menu -->
+            <div class="flex-1 px-6 -mt-6 relative z-20 pb-8">
+                
+                <!-- 8 Tombol Navigasi Lingkaran (Grid 4x2) -->
+                <div class="bg-white rounded-3xl shadow-lg p-6 mb-6">
+                    <h3 class="font-outfit font-bold text-slate-700 mb-4 text-sm flex items-center gap-2">
+                        <i data-lucide="grid" class="w-4 h-4 text-teal-600"></i> Menu Utama
+                    </h3>
+                    
+                    <div class="grid grid-cols-4 gap-y-6 gap-x-2">
+                        
+                        <!-- 1. Kompetensi -->
+                        <a href="responsiva/home.html" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">Kompetensi</span>
+                        </a>
+
+                        <!-- 2. Tujuan -->
+                        <a href="responsiva/tujuan.html" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="flag" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">Tujuan</span>
+                        </a>
+
+                        <!-- 3. Materi (Buka Panel Dalam) -->
+                        <button onclick="openPanel('materiPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="book-open" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">Materi</span>
+                        </button>
+
+                        <!-- 4. Video -->
+                        <a href="https://youtube.com/" target="_blank" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="play-circle" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">Video</span>
+                        </a>
+
+                        <!-- 5. Quiz -->
+                        <a href="quiz/index.html" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="help-circle" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">Quiz</span>
+                        </a>
+
+                        <!-- 6. Evaluasi -->
+                        <a href="https://forms.google.com/" target="_blank" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">Evaluasi</span>
+                        </a>
+
+                        <!-- 7. LKPD (Buka Panel Dalam) -->
+                        <button onclick="openPanel('lkpdPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="file-edit" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">LKPD</span>
+                        </button>
+
+                        <!-- 8. About Us -->
+                        <a href="biodata Pengembang/index.html" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none">
+                            <div class="w-12 h-12 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center shadow-sm">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-semibold text-slate-600">About Us</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- Info Tambahan / Quotes -->
+                <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl p-5 text-white shadow-md">
+                    <i data-lucide="quote" class="w-6 h-6 text-slate-400 mb-2"></i>
+                    <p class="text-sm italic font-light leading-relaxed">
+                        "Jika kamu tidak tahan dengan lelahnya belajar, maka kamu harus tahan dengan perihnya kebodohan."
+                    </p>
+                    <p class="text-xs text-slate-300 mt-3 font-semibold">- Imam Syafi'i</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- 3. PANEL MATERI (Slide In dari Kanan) -->
+        <!-- ========================================== -->
+        <div id="materiPanel" class="absolute inset-0 z-40 bg-slate-50 page-slide-in-right flex flex-col">
+            <!-- App Bar Materi -->
+            <div class="bg-white px-4 py-4 border-b border-slate-200 flex items-center gap-3 shadow-sm sticky top-0 z-10">
+                <button onclick="closePanel('materiPanel')" class="p-2 rounded-full hover:bg-slate-100 active:bg-slate-200 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-700"></i>
+                </button>
+                <h2 class="font-outfit font-bold text-lg text-slate-800">Daftar Materi</h2>
+            </div>
+
+            <!-- List Materi -->
+            <div class="flex-1 scroll-area overflow-y-auto p-4 space-y-3 pb-10">
+                
+                <a href="Ruang Lingkup Ilmu Kalam/index.html" class="block bg-white p-4 rounded-xl shadow-sm border border-slate-100 active:scale-[0.98] transition-transform">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shrink-0">
+                            <span class="font-bold text-teal-600">1</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">Ruang Lingkup Ilmu Kalam</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Etimologi, Terminologi & Sumber</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                </a>
+
+                <a href="Karakteristik Syiah dan Khawarij/index.html" class="block bg-white p-4 rounded-xl shadow-sm border border-slate-100 active:scale-[0.98] transition-transform">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shrink-0">
+                            <span class="font-bold text-teal-600">2</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">Syi'ah & Khawarij</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Sejarah dan doktrin ajaran</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                </a>
+
+                <a href="Karakteristik Qadariyah dan Jabariyah/index.html" class="block bg-white p-4 rounded-xl shadow-sm border border-slate-100 active:scale-[0.98] transition-transform">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shrink-0">
+                            <span class="font-bold text-teal-600">3</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">Qadariyah & Jabariyah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Konsep kehendak bebas manusia</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                </a>
+
+                <a href="Karakteristik Murjiah dan Mutazilah/index.html" class="block bg-white p-4 rounded-xl shadow-sm border border-slate-100 active:scale-[0.98] transition-transform">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shrink-0">
+                            <span class="font-bold text-teal-600">4</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">Murji'ah & Mu'tazilah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Rasionalitas & penundaan hukum</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                </a>
+
+                <a href="Karakteristik Asyariyah dan Maturidiyah/index.html" class="block bg-white p-4 rounded-xl shadow-sm border border-slate-100 active:scale-[0.98] transition-transform">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center shrink-0">
+                            <span class="font-bold text-teal-600">5</span>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-slate-800 text-sm">Asy'ariyah & Maturidiyah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Teologi Ahlus Sunnah wal Jama'ah</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 4. PANEL LKPD (Slide In dari Kanan) -->
+        <!-- ========================================== -->
+        <div id="lkpdPanel" class="absolute inset-0 z-40 bg-slate-50 page-slide-in-right flex flex-col">
+            <!-- App Bar LKPD -->
+            <div class="bg-indigo-600 px-4 py-4 flex items-center gap-3 shadow-md sticky top-0 z-10 text-white">
+                <button onclick="closePanel('lkpdPanel')" class="p-2 rounded-full hover:bg-white/10 active:bg-white/20 transition-colors">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                </button>
+                <h2 class="font-outfit font-bold text-lg">Daftar LKPD</h2>
+            </div>
+
+            <!-- List LKPD -->
+            <div class="flex-1 scroll-area overflow-y-auto p-4 grid grid-cols-2 gap-4 pb-10">
+                
+                <a href="lkpd syiah/index.html" class="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100 flex flex-col items-center text-center active:scale-95 transition-transform">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mb-3">
+                        <i data-lucide="file-signature" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-700 text-xs">LKPD Syi'ah & Khawarij</h3>
+                </a>
+
+                <a href="lkpd jabariyah/index.html" class="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100 flex flex-col items-center text-center active:scale-95 transition-transform">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mb-3">
+                        <i data-lucide="file-signature" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-700 text-xs">LKPD Jabariyah & Qadariyah</h3>
+                </a>
+
+                <a href="lkpd murjiah/index.html" class="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100 flex flex-col items-center text-center active:scale-95 transition-transform">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mb-3">
+                        <i data-lucide="file-signature" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-700 text-xs">LKPD Murji'ah & Mu'tazilah</h3>
+                </a>
+
+                <a href="lkpd asyariyah/index.html" class="bg-white rounded-2xl p-4 shadow-sm border border-indigo-100 flex flex-col items-center text-center active:scale-95 transition-transform">
+                    <div class="w-12 h-12 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mb-3">
+                        <i data-lucide="file-signature" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-slate-700 text-xs">LKPD Asy'ariyah & Maturidiyah</h3>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT LOGIKA APLIKASI -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+
+        // Logika Splash Screen ke Home Screen
+        function startApp() {
+            const splash = document.getElementById('splashScreen');
+            
+            // Animasi menghilang ke atas
+            splash.style.transform = 'translateY(-100%)';
+            splash.style.opacity = '0';
+            
+            // Hapus dari DOM setelah animasi selesai agar tidak menutupi klik
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 500);
+        }
+
+        // Logika Buka Panel (Sub-menu di dalam aplikasi)
+        function openPanel(panelId) {
+            const panel = document.getElementById(panelId);
+            panel.classList.add('active');
+        }
+
+        // Logika Tutup Panel
+        function closePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            panel.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
