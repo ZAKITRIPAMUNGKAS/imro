@@ -77,6 +77,19 @@
 
         .menu-btn { transition: transform 0.1s; }
         .menu-btn:active { transform: scale(0.92); }
+
+        /* Transition for SPA Iframe */
+        #appIframe {
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            pointer-events: none;
+        }
+        #appIframe.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="antialiased text-slate-800">
@@ -84,7 +97,7 @@
      <!-- FRAME APLIKASI UTAMA -->
     <div class="app-emulator flex flex-col">
         <!-- Iframe untuk SPA Hash Routing Halaman Materi -->
-        <iframe id="appIframe" class="absolute inset-0 w-full h-full z-[45] border-none hidden" src="about:blank"></iframe>
+        <iframe id="appIframe" class="absolute inset-0 w-full h-full z-[45] border-none" src="about:blank"></iframe>
 
         <!-- ========================================== -->
         <!-- 1. SPLASH SCREEN -->
@@ -787,24 +800,55 @@
         iframe.addEventListener('load', function() {
             try {
                 const iframeWindow = iframe.contentWindow;
-                const iframePath = iframeWindow.location.pathname;
+                const href = iframeWindow.location.href;
                 
-                const pathname = window.location.pathname;
-                const rootDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
-                let relativePath = iframeWindow.location.href.replace(window.location.origin + rootDir, '');
+                // Ignore about:blank loads to break the infinite reload loop!
+                if (href === 'about:blank' || href.startsWith('about:')) {
+                    return;
+                }
                 
-                if (relativePath.startsWith('index.html') || relativePath === '' || relativePath.startsWith('about:blank')) {
-                    iframe.classList.add('hidden');
-                    iframe.src = 'about:blank';
+                // Decode components to handle spaces (%20 vs " ") properly across platform WebView environments
+                const parentUrl = new URL(window.location.href);
+                const iframeUrl = new URL(href);
+                
+                const parentNormalizedPath = decodeURIComponent(parentUrl.pathname);
+                const iframeNormalizedPath = decodeURIComponent(iframeUrl.pathname);
+
+                // Detect back navigation or home redirection
+                if (iframeNormalizedPath === parentNormalizedPath || 
+                    iframeNormalizedPath.endsWith('/index.html') && iframeNormalizedPath.replace('/index.html', '') === parentNormalizedPath.replace('/index.html', '')) {
+                    
+                    iframe.classList.remove('active'); // Hide with transition
+                    iframe.src = 'about:blank'; // Safe reset
                     window.location.hash = 'home';
+                    
+                    // Close all active sliding panels
                     closePanel('materiPanel');
                     closePanel('lkpdPanel');
+                    closePanel('evaluasiPanel');
+                    closePanel('videoPanel');
                     return;
                 }
 
-                window.location.hash = '#/' + decodeURIComponent(relativePath);
+                // Compute relative path
+                const parentFolder = decodeURIComponent(parentUrl.pathname.substring(0, parentUrl.pathname.lastIndexOf('/') + 1));
+                let relativePath = '';
+                if (iframeNormalizedPath.startsWith(parentFolder)) {
+                    relativePath = iframeNormalizedPath.substring(parentFolder.length) + iframeUrl.search + iframeUrl.hash;
+                } else {
+                    relativePath = iframeNormalizedPath + iframeUrl.search + iframeUrl.hash;
+                }
+
+                window.location.hash = '#/' + relativePath;
+                
+                // Trigger smooth fade-in/scale-up animation on loaded content
+                setTimeout(() => {
+                    iframe.classList.add('active');
+                }, 50);
+
             } catch (e) {
                 console.log("External navigation or cross-origin:", e);
+                iframe.classList.add('active');
             }
         });
 
@@ -818,16 +862,28 @@
                 
                 let currentIframeSrc = '';
                 try {
-                    const pathname = window.location.pathname;
-                    const rootDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
-                    currentIframeSrc = iframe.contentWindow.location.href.replace(window.location.origin + rootDir, '');
+                    const parentUrl = new URL(window.location.href);
+                    const iframeUrl = new URL(iframe.contentWindow.location.href);
+                    const parentFolder = decodeURIComponent(parentUrl.pathname.substring(0, parentUrl.pathname.lastIndexOf('/') + 1));
+                    const iframeNormalizedPath = decodeURIComponent(iframeUrl.pathname);
+                    
+                    if (iframeNormalizedPath.startsWith(parentFolder)) {
+                        currentIframeSrc = iframeNormalizedPath.substring(parentFolder.length) + iframeUrl.search + iframeUrl.hash;
+                    } else {
+                        currentIframeSrc = iframeNormalizedPath + iframeUrl.search + iframeUrl.hash;
+                    }
                 } catch(e) {}
                 
-                if (decodeURIComponent(currentIframeSrc) !== targetPage) {
-                    iframe.src = targetPage;
+                // Only load if it's different and not about:blank
+                if (currentIframeSrc !== targetPage) {
+                    // Temporarily remove active class for smooth page-switching transition animation
+                    iframe.classList.remove('active');
+                    setTimeout(() => {
+                        iframe.src = targetPage;
+                    }, 150);
+                } else {
+                    iframe.classList.add('active');
                 }
-                
-                iframe.classList.remove('hidden');
                 
                 // Hide splash screen if visible
                 const splash = document.getElementById('splashScreen');
@@ -835,7 +891,7 @@
                     splash.style.display = 'none';
                 }
             } else if (hash === '#home' || hash === '') {
-                iframe.classList.add('hidden');
+                iframe.classList.remove('active'); // Hide with transition
                 if (iframe.src !== 'about:blank') {
                     iframe.src = 'about:blank';
                 }
