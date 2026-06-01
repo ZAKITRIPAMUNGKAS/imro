@@ -113,9 +113,11 @@
                 <p class="font-amiri text-2xl mb-8 text-amber-300 drop-shadow-md">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
 
                 <!-- Ikon Buku & Bulan Sabit (Simbol Ilmu & Islam) -->
-                <div class="w-28 h-28 bg-emerald-800/60 backdrop-blur-md border-2 border-amber-400/50 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(251,191,36,0.3)]">
-                    <div class="relative w-20 h-20">
-                       <img src="logo.png" alt="Logo E-MODUL" class="w-full h-full object-contain">
+                <div class="w-28 h-28 bg-emerald-800/60 backdrop-blur-md border-2 border-amber-400/50 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(251,191,36,0.3)] relative group transition-all duration-500 hover:scale-105">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-amber-400/10 to-transparent animate-pulse"></div>
+                    <div class="relative flex items-center justify-center">
+                        <i data-lucide="book-open" class="w-12 h-12 text-amber-400 animate-bounce" style="animation-duration: 3s;"></i>
+                        <i data-lucide="moon-star" class="w-5 h-5 text-amber-300 absolute -top-1.5 -right-1.5 rotate-12"></i>
                     </div>
                 </div>
                 
@@ -1740,29 +1742,35 @@
             const desc = document.getElementById('resultDesc');
             
             if (quizScore === 100) {
-                sticker.textContent = "👑";
+                sticker.innerHTML = '<i data-lucide="crown" class="w-12 h-12 text-amber-500 animate-pulse"></i>';
                 title.textContent = "Muthmainnah (Sempurna)";
                 rating.textContent = "⭐⭐⭐⭐⭐";
                 desc.textContent = "Maa syaa Allah! Jawabanmu benar semua. Pemahamanmu tentang materi teologi ini sangat sempurna!";
-                // Ledakan konfeti seru
-                setTimeout(triggerConfetti, 350);
+                // Ledakan konfeti seru (100 partikel)
+                setTimeout(() => triggerConfetti(100), 350);
             } else if (quizScore >= 70) {
-                sticker.textContent = "🌟";
+                sticker.innerHTML = '<i data-lucide="trophy" class="w-12 h-12 text-amber-400"></i>';
                 title.textContent = "Mumtaz (Sangat Bagus)";
                 rating.textContent = "⭐⭐⭐⭐";
                 desc.textContent = "Alhamdulillah! Hasil yang sangat baik. Kamu sudah menguasai sebagian besar materi teologi ini!";
-                setTimeout(triggerConfetti, 350);
+                // Konfeti sedang (60 partikel)
+                setTimeout(() => triggerConfetti(60), 350);
             } else if (quizScore >= 40) {
-                sticker.textContent = "📚";
+                sticker.innerHTML = '<i data-lucide="book-open" class="w-12 h-12 text-emerald-600"></i>';
                 title.textContent = "Jayyid (Cukup Baik)";
                 rating.textContent = "⭐⭐⭐";
                 desc.textContent = "Bagus! Kamu sudah memahami dasar-dasarnya. Yuk baca kembali e-modulnya agar pemahamanmu makin mantap!";
+                // Konfeti ringan (30 partikel)
+                setTimeout(() => triggerConfetti(30), 350);
             } else {
-                sticker.textContent = "✍️";
+                sticker.innerHTML = '<i data-lucide="rotate-ccw" class="w-12 h-12 text-slate-500"></i>';
                 title.textContent = "Mujtahid (Terus Berjuang)";
                 rating.textContent = "⭐";
                 desc.textContent = "Jangan patah semangat! Menuntut ilmu adalah perjuangan. Baca materi di menu utama dan coba lagi kuisnya!";
             }
+
+            // Render ulang ikon Lucide untuk memuat ikon vector kuis yang baru disisipkan
+            lucide.createIcons();
 
             // Animasi menghitung skor dari 0 ke skor akhir
             const scoreEl = document.getElementById('resultScore');
@@ -1802,13 +1810,13 @@
         }
 
         // Gimmick Confetti Particle Generator
-        function triggerConfetti() {
+        function triggerConfetti(count = 70) {
             const container = document.getElementById('confettiContainer');
             container.innerHTML = ''; // Reset
             
             const colors = ['#f59e0b', '#10b981', '#3b82f6', '#ec4899', '#8b5cf6', '#14b8a6'];
             
-            for (let i = 0; i < 70; i++) {
+            for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.className = "absolute rounded-full opacity-80 pointer-events-none";
                 
