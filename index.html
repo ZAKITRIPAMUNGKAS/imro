@@ -738,6 +738,9 @@
         // Inisialisasi ikon Lucide
         lucide.createIcons();
 
+        // Tracker history untuk iframe sub-halaman
+        let iframeHistory = [];
+
         // Check if hash is #home to bypass splash screen
         if (window.location.hash === '#home') {
             const splash = document.getElementById('splashScreen');
@@ -752,6 +755,7 @@
             
             // Set hash to #home when starting the app
             window.location.hash = 'home';
+            iframeHistory = [];
             
             // Animasi menghilang ke atas
             splash.style.transform = 'translateY(-100%)';
@@ -821,6 +825,7 @@
                     iframe.classList.remove('active'); // Hide with transition
                     iframe.src = 'about:blank'; // Safe reset
                     window.location.hash = 'home';
+                    iframeHistory = []; // Reset history
                     
                     // Close all active sliding panels
                     closePanel('materiPanel');
@@ -839,7 +844,48 @@
                     relativePath = iframeNormalizedPath + iframeUrl.search + iframeUrl.hash;
                 }
 
+                // Manage history stack for subpage back transitions
+                if (iframeHistory.length === 0 || iframeHistory[iframeHistory.length - 1] !== relativePath) {
+                    if (iframeHistory.length > 1 && iframeHistory[iframeHistory.length - 2] === relativePath) {
+                        iframeHistory.pop();
+                    } else {
+                        iframeHistory.push(relativePath);
+                    }
+                }
+
                 window.location.hash = '#/' + relativePath;
+
+                // Intercept back button click inside the iframe
+                const allLinks = iframeWindow.document.querySelectorAll('a');
+                let backBtn = null;
+                for (let link of allLinks) {
+                    if (link.querySelector('[data-lucide="arrow-left"]') || 
+                        link.querySelector('.lucide-arrow-left') || 
+                        (link.getAttribute('href') && (link.getAttribute('href').includes('index.html#home') || link.getAttribute('href') === '../index.html'))) {
+                        backBtn = link;
+                        break;
+                    }
+                }
+
+                if (backBtn) {
+                    backBtn.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        if (iframeHistory.length > 1) {
+                            iframeHistory.pop(); // Remove current page
+                            const prevPage = iframeHistory.pop(); // Remove previous page so it can be re-pushed
+                            window.location.hash = '#/' + prevPage;
+                        } else {
+                            iframe.classList.remove('active'); // Hide with transition
+                            iframe.src = 'about:blank';
+                            window.location.hash = 'home';
+                            iframeHistory = [];
+                            closePanel('materiPanel');
+                            closePanel('lkpdPanel');
+                            closePanel('evaluasiPanel');
+                            closePanel('videoPanel');
+                        }
+                    });
+                }
                 
                 // Trigger smooth fade-in/scale-up animation on loaded content
                 setTimeout(() => {
@@ -895,6 +941,7 @@
                 if (iframe.src !== 'about:blank') {
                     iframe.src = 'about:blank';
                 }
+                iframeHistory = []; // Reset history
             }
         }
 
