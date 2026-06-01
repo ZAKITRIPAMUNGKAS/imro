@@ -8,6 +8,7 @@ const destDir = path.join(__dirname, 'www');
 const assets = [
     'index.html',
     'logo.png',
+    'cover_book.png',
     'Ruang Lingkup Ilmu Kalam',
     'Karakteristik Syiah dan Khawarij',
     'Karakteristik Qadariyah dan Jabariyah',
