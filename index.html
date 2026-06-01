@@ -1598,52 +1598,78 @@
 
                 window.location.hash = '#/' + relativePath;
 
-                // Intercept back button click inside the iframe
+                // Intercept clicks on links inside the iframe to handle smooth page routing and back button actions
                 const allLinks = iframeWindow.document.querySelectorAll('a');
-                let backBtn = null;
-                for (let link of allLinks) {
-                    if (link.querySelector('[data-lucide="arrow-left"]') || 
-                        link.querySelector('.lucide-arrow-left') || 
-                        (link.getAttribute('href') && (link.getAttribute('href').includes('index.html#home') || link.getAttribute('href') === '../index.html'))) {
-                        backBtn = link;
-                        break;
-                    }
-                }
-
-                if (backBtn) {
-                    backBtn.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        if (iframeHistory.length > 1) {
-                            iframeHistory.pop(); // Remove current page
-                            const prevPage = iframeHistory.pop(); // Remove previous page so it can be re-pushed
-                            window.location.hash = '#/' + prevPage;
-                        } else {
-                            const firstPage = relativePath;
-                            iframe.classList.remove('active'); // Hide with transition
-                            iframe.src = 'about:blank';
-                            window.location.hash = 'home';
-                            iframeHistory = [];
+                allLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        const href = link.getAttribute('href');
+                        if (!href) return;
+                        
+                        const isExternal = href.startsWith('http') || href.startsWith('//') || link.getAttribute('target') === '_blank';
+                        const isHash = href.startsWith('#');
+                        const isMailOrTel = href.startsWith('mailto:') || href.startsWith('tel:');
+                        
+                        if (!isExternal && !isHash && !isMailOrTel) {
+                            event.preventDefault();
                             
-                            if (firstPage.toLowerCase().startsWith('lkpd')) {
-                                // Keep lkpdPanel open, close others
-                                closePanel('materiPanel');
-                                closePanel('evaluasiPanel');
-                                closePanel('videoPanel');
-                            } else if (firstPage.toLowerCase().includes('karakteristik') || firstPage.toLowerCase().includes('ruang')) {
-                                // Keep materiPanel open, close others
-                                closePanel('lkpdPanel');
-                                closePanel('evaluasiPanel');
-                                closePanel('videoPanel');
+                            // Check if it's a back button/home redirection
+                            const isBack = link.querySelector('[data-lucide="arrow-left"]') || 
+                                           link.querySelector('.lucide-arrow-left') || 
+                                           href.includes('index.html#home') || 
+                                           href === '../index.html';
+                            
+                            if (isBack) {
+                                if (iframeHistory.length > 1) {
+                                    iframeHistory.pop(); // Remove current page
+                                    const prevPage = iframeHistory.pop(); // Remove previous page so it can be re-pushed
+                                    window.location.hash = '#/' + prevPage;
+                                } else {
+                                    const firstPage = relativePath;
+                                    iframe.classList.remove('active'); // Hide with transition
+                                    iframe.src = 'about:blank';
+                                    window.location.hash = 'home';
+                                    iframeHistory = [];
+                                    
+                                    if (firstPage.toLowerCase().startsWith('lkpd')) {
+                                        closePanel('materiPanel');
+                                        closePanel('evaluasiPanel');
+                                        closePanel('videoPanel');
+                                    } else if (firstPage.toLowerCase().includes('karakteristik') || firstPage.toLowerCase().includes('ruang')) {
+                                        closePanel('lkpdPanel');
+                                        closePanel('evaluasiPanel');
+                                        closePanel('videoPanel');
+                                    } else {
+                                        closePanel('materiPanel');
+                                        closePanel('lkpdPanel');
+                                        closePanel('evaluasiPanel');
+                                        closePanel('videoPanel');
+                                    }
+                                }
                             } else {
-                                // Close all panels
-                                closePanel('materiPanel');
-                                closePanel('lkpdPanel');
-                                closePanel('evaluasiPanel');
-                                closePanel('videoPanel');
+                                // Regular subpage page navigation (e.g. bottom navbar tabs, bottom sheet links)
+                                const parentFolder = decodeURIComponent(parentUrl.pathname.substring(0, parentUrl.pathname.lastIndexOf('/') + 1));
+                                
+                                let targetFullPath = '';
+                                if (href.startsWith('/')) {
+                                    targetFullPath = href;
+                                } else {
+                                    const resolvedUrl = new URL(href, iframeUrl.href);
+                                    targetFullPath = decodeURIComponent(resolvedUrl.pathname);
+                                }
+                                
+                                let resolvedRelative = '';
+                                if (targetFullPath.startsWith(parentFolder)) {
+                                    resolvedRelative = targetFullPath.substring(parentFolder.length);
+                                } else {
+                                    resolvedRelative = targetFullPath;
+                                }
+                                
+                                // Update parent hash to trigger standard smooth SPA animation
+                                window.location.hash = '#/' + resolvedRelative;
                             }
                         }
                     });
-                }
+                });
                 
                 // Trigger smooth fade-in/scale-up animation on loaded content
                 setTimeout(() => {
