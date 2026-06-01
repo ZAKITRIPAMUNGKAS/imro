@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>E-Modul Ilmu Kalam</title>
+    <link rel="shortcut icon" href="logo.png" type="image/png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -82,6 +83,8 @@
 
      <!-- FRAME APLIKASI UTAMA -->
     <div class="app-emulator flex flex-col">
+        <!-- Iframe untuk SPA Hash Routing Halaman Materi -->
+        <iframe id="appIframe" class="absolute inset-0 w-full h-full z-[45] border-none hidden" src="about:blank"></iframe>
 
         <!-- ========================================== -->
         <!-- 1. SPLASH SCREEN -->
@@ -476,6 +479,89 @@
             const panel = document.getElementById(panelId);
             panel.classList.remove('active');
         }
+
+        // Intercept clicks on links pointing to subpages to load them in the iframe instead
+        document.addEventListener('click', function(e) {
+            const anchor = e.target.closest('a');
+            if (!anchor) return;
+            
+            const href = anchor.getAttribute('href');
+            if (!href) return;
+            
+            const isExternal = href.startsWith('http') || href.startsWith('//') || anchor.getAttribute('target') === '_blank';
+            const isHash = href.startsWith('#');
+            const isMailOrTel = href.startsWith('mailto:') || href.startsWith('tel:');
+            
+            if (!isExternal && !isHash && !isMailOrTel) {
+                if (href.endsWith('.html') || href.includes('/')) {
+                    e.preventDefault();
+                    window.location.hash = '#/' + href;
+                }
+            }
+        });
+
+        // Iframe load handler to manage parent hash and detect back navigation
+        const iframe = document.getElementById('appIframe');
+        iframe.addEventListener('load', function() {
+            try {
+                const iframeWindow = iframe.contentWindow;
+                const iframePath = iframeWindow.location.pathname;
+                
+                const pathname = window.location.pathname;
+                const rootDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+                let relativePath = iframeWindow.location.href.replace(window.location.origin + rootDir, '');
+                
+                if (relativePath.startsWith('index.html') || relativePath === '' || relativePath.startsWith('about:blank')) {
+                    iframe.classList.add('hidden');
+                    iframe.src = 'about:blank';
+                    window.location.hash = 'home';
+                    closePanel('materiPanel');
+                    closePanel('lkpdPanel');
+                    return;
+                }
+
+                window.location.hash = '#/' + decodeURIComponent(relativePath);
+            } catch (e) {
+                console.log("External navigation or cross-origin:", e);
+            }
+        });
+
+        // Hash Routing Handler
+        function handleHashRouting() {
+            const hash = window.location.hash;
+            const iframe = document.getElementById('appIframe');
+            
+            if (hash.startsWith('#/')) {
+                const targetPage = decodeURIComponent(hash.substring(2));
+                
+                let currentIframeSrc = '';
+                try {
+                    const pathname = window.location.pathname;
+                    const rootDir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+                    currentIframeSrc = iframe.contentWindow.location.href.replace(window.location.origin + rootDir, '');
+                } catch(e) {}
+                
+                if (decodeURIComponent(currentIframeSrc) !== targetPage) {
+                    iframe.src = targetPage;
+                }
+                
+                iframe.classList.remove('hidden');
+                
+                // Hide splash screen if visible
+                const splash = document.getElementById('splashScreen');
+                if (splash) {
+                    splash.style.display = 'none';
+                }
+            } else if (hash === '#home' || hash === '') {
+                iframe.classList.add('hidden');
+                if (iframe.src !== 'about:blank') {
+                    iframe.src = 'about:blank';
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', handleHashRouting);
+        window.addEventListener('hashchange', handleHashRouting);
     </script>
 </body>
 </html>
