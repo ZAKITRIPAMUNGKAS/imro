@@ -222,12 +222,12 @@
                         </button>
 
                         <!-- 5. Quiz -->
-                        <a href="https://forms.gle/iHSWaqrfJnSdtHu57" target="_blank" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
+                        <button onclick="openPanel('quizPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
                             <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shadow-sm border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                                 <i data-lucide="help-circle" class="w-5 h-5"></i>
                             </div>
                             <span class="text-[10px] font-semibold text-slate-600">Quiz</span>
-                        </a>
+                        </button>
 
                         <!-- 6. Evaluasi (Buka Panel Evaluasi) -->
                         <button onclick="openPanel('evaluasiPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
@@ -699,6 +699,239 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- 5B. PANEL KUIS (Slide In dari Kanan) -->
+        <!-- ========================================== -->
+        <div id="quizPanel" class="absolute inset-0 z-40 bg-slate-50 page-slide-in-right flex flex-col">
+            
+            <!-- App Bar Kuis (Kubah Style) -->
+            <div class="islamic-pattern bg-emerald-800 pt-6 pb-6 px-4 shadow-lg sticky top-0 z-20 text-white rounded-b-3xl">
+                <div class="flex items-center gap-3 relative z-10">
+                    <button onclick="closePanel('quizPanel')" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all shadow-inner">
+                        <i data-lucide="arrow-left" class="w-5 h-5 text-white"></i>
+                    </button>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl leading-tight">Kuis Ilmu Kalam</h2>
+                        <p class="text-xs text-emerald-200 font-light">Uji Pemahaman Aliran & Teologi</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List Topik Kuis -->
+            <div class="flex-1 scroll-area overflow-y-auto px-5 pt-6 pb-12 space-y-4 relative">
+                <!-- Dekorasi Background -->
+                <div class="absolute top-10 right-0 w-32 h-32 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 z-0"></div>
+                <div class="absolute bottom-20 left-0 w-40 h-40 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 z-0"></div>
+
+                <!-- Kartu Kuis 1 -->
+                <div onclick="startQuiz(0)" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-100 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] group cursor-pointer overflow-hidden">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center font-bold text-lg font-outfit">
+                            1
+                        </div>
+                        <div class="flex-1">
+                            <span class="bg-amber-100 text-amber-800 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Modul 1</span>
+                            <h3 class="font-outfit font-bold text-slate-800 text-xs mt-1">Ruang Lingkup Ilmu Kalam</h3>
+                            <p class="text-[10px] text-slate-400 mt-0.5">10 Soal • Skor Maks: 100</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-amber-100 group-hover:text-amber-600 transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Kuis 2 -->
+                <div onclick="startQuiz(1)" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-100 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] group cursor-pointer overflow-hidden">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold text-lg font-outfit">
+                            2
+                        </div>
+                        <div class="flex-1">
+                            <span class="bg-emerald-100 text-emerald-800 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Modul 2</span>
+                            <h3 class="font-outfit font-bold text-slate-800 text-xs mt-1">Syi'ah & Khawarij</h3>
+                            <p class="text-[10px] text-slate-400 mt-0.5">10 Soal • Skor Maks: 100</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-emerald-100 group-hover:text-emerald-600 transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Kuis 3 -->
+                <div onclick="startQuiz(2)" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-100 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] group cursor-pointer overflow-hidden">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center font-bold text-lg font-outfit">
+                            3
+                        </div>
+                        <div class="flex-1">
+                            <span class="bg-teal-100 text-teal-800 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Modul 3</span>
+                            <h3 class="font-outfit font-bold text-slate-800 text-xs mt-1">Qadariyah & Jabariyah</h3>
+                            <p class="text-[10px] text-slate-400 mt-0.5">10 Soal • Skor Maks: 100</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-teal-100 group-hover:text-teal-600 transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Kuis 4 -->
+                <div onclick="startQuiz(3)" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-100 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] group cursor-pointer overflow-hidden">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center font-bold text-lg font-outfit">
+                            4
+                        </div>
+                        <div class="flex-1">
+                            <span class="bg-sky-100 text-sky-800 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Modul 4</span>
+                            <h3 class="font-outfit font-bold text-slate-800 text-xs mt-1">Murji'ah & Mu'tazilah</h3>
+                            <p class="text-[10px] text-slate-400 mt-0.5">10 Soal • Skor Maks: 100</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-sky-100 group-hover:text-sky-600 transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Kuis 5 -->
+                <div onclick="startQuiz(4)" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-100 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)] group cursor-pointer overflow-hidden">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center font-bold text-lg font-outfit">
+                            5
+                        </div>
+                        <div class="flex-1">
+                            <span class="bg-purple-100 text-purple-800 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Modul 5</span>
+                            <h3 class="font-outfit font-bold text-slate-800 text-xs mt-1">Asy'ariyah & Maturidiyah</h3>
+                            <p class="text-[10px] text-slate-400 mt-0.5">10 Soal • Skor Maks: 100</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-purple-100 group-hover:text-purple-600 transition-colors">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 5C. INTERFACE KUIS AKTIF (Slide In dari Kanan) -->
+        <!-- ========================================== -->
+        <div id="activeQuizPanel" class="absolute inset-0 z-40 bg-slate-50 page-slide-in-right flex flex-col hidden">
+            <!-- Header Kuis -->
+            <div class="bg-emerald-800 px-4 py-4 flex flex-col gap-2 shadow-md text-white border-b-2 border-amber-500">
+                <div class="flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 min-w-0">
+                        <button onclick="confirmExitActiveQuiz()" class="p-1 hover:bg-emerald-700 active:scale-95 transition-all rounded-full shrink-0">
+                            <i data-lucide="arrow-left" class="w-5 h-5 text-white"></i>
+                        </button>
+                        <h2 id="activeQuizTitle" class="font-outfit font-bold text-sm truncate">Nama Kuis</h2>
+                    </div>
+                    <span id="quizQuestionNum" class="text-[10px] bg-emerald-950 px-2.5 py-1 rounded-full font-bold">Soal 1/10</span>
+                </div>
+                <!-- Progress Bar -->
+                <div class="w-full bg-emerald-950 h-2 rounded-full overflow-hidden">
+                    <div id="quizProgressBar" class="bg-amber-400 h-full w-[10%] transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Area Pertanyaan & Opsi -->
+            <div class="flex-1 scroll-area overflow-y-auto p-5 flex flex-col gap-5 justify-between">
+                
+                <!-- Card Pertanyaan -->
+                <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 flex flex-col gap-4 relative overflow-hidden shrink-0">
+                    <!-- Ornamen -->
+                    <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center opacity-30">
+                        <i data-lucide="moon" class="w-12 h-12 text-emerald-800"></i>
+                    </div>
+                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-amber-500">Pertanyaan</span>
+                    <p id="quizQuestionText" class="font-outfit font-semibold text-slate-800 text-sm leading-relaxed relative z-10">Isi Pertanyaan Kuis</p>
+                </div>
+
+                <!-- Opsi Jawaban -->
+                <div class="flex flex-col gap-3 relative z-10" id="quizOptionsContainer">
+                    <!-- Opsi A -->
+                    <button onclick="selectOption(0)" class="quiz-option w-full p-4 bg-white border border-slate-100 hover:border-emerald-300 active:scale-[0.98] transition-all rounded-2xl flex items-center gap-3 text-left">
+                        <span class="w-7 h-7 shrink-0 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs font-outfit uppercase">A</span>
+                        <p class="text-xs text-slate-700 font-medium option-text">Pilihan Jawaban A</p>
+                    </button>
+                    <!-- Opsi B -->
+                    <button onclick="selectOption(1)" class="quiz-option w-full p-4 bg-white border border-slate-100 hover:border-emerald-300 active:scale-[0.98] transition-all rounded-2xl flex items-center gap-3 text-left">
+                        <span class="w-7 h-7 shrink-0 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs font-outfit uppercase">B</span>
+                        <p class="text-xs text-slate-700 font-medium option-text">Pilihan Jawaban B</p>
+                    </button>
+                    <!-- Opsi C -->
+                    <button onclick="selectOption(2)" class="quiz-option w-full p-4 bg-white border border-slate-100 hover:border-emerald-300 active:scale-[0.98] transition-all rounded-2xl flex items-center gap-3 text-left">
+                        <span class="w-7 h-7 shrink-0 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs font-outfit uppercase">C</span>
+                        <p class="text-xs text-slate-700 font-medium option-text">Pilihan Jawaban C</p>
+                    </button>
+                    <!-- Opsi D -->
+                    <button onclick="selectOption(3)" class="quiz-option w-full p-4 bg-white border border-slate-100 hover:border-emerald-300 active:scale-[0.98] transition-all rounded-2xl flex items-center gap-3 text-left">
+                        <span class="w-7 h-7 shrink-0 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs font-outfit uppercase">D</span>
+                        <p class="text-xs text-slate-700 font-medium option-text">Pilihan Jawaban D</p>
+                    </button>
+                </div>
+
+                <!-- Footer Pembahasan & Lanjut -->
+                <div class="flex flex-col gap-3">
+                    <!-- Penjelasan/Feedback (Hidden By Default) -->
+                    <div id="quizFeedbackBox" class="hidden p-4 rounded-2xl border text-xs leading-relaxed flex flex-col gap-1 transition-all">
+                        <h4 id="quizFeedbackStatus" class="font-bold">Jawaban Benar!</h4>
+                        <p id="quizFeedbackText" class="text-[11px] text-slate-600 font-medium">Pembahasan detail dari pertanyaan ini.</p>
+                    </div>
+
+                    <!-- Tombol Lanjut -->
+                    <button id="quizNextBtn" disabled onclick="nextQuestion()" class="w-full py-3.5 bg-emerald-800 text-white font-bold rounded-xl flex items-center justify-center gap-2 active:scale-[0.97] transition-all disabled:opacity-50 disabled:pointer-events-none hover:bg-emerald-700 text-xs font-outfit">
+                        <span>Lanjutkan</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 5D. LAYAR HASIL KUIS (Confetti & Stars Gimmicks) -->
+        <!-- ========================================== -->
+        <div id="quizResultPanel" class="absolute inset-0 z-50 bg-slate-50 flex flex-col justify-center items-center p-6 hidden">
+            <!-- Confetti Canvas / Container -->
+            <div id="confettiContainer" class="absolute inset-0 pointer-events-none z-10 overflow-hidden"></div>
+
+            <div class="w-full max-w-[340px] flex flex-col items-center text-center gap-6 relative z-20">
+                <!-- Sticker / Icon Gimmick -->
+                <div id="resultSticker" class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl shadow-lg border border-slate-100/50 animate-bounce">
+                    🌟
+                </div>
+
+                <!-- Title & Status -->
+                <div class="flex flex-col gap-1">
+                    <h3 id="resultTitle" class="font-outfit font-black text-xl text-slate-800">Muthmainnah (Sempurna)</h3>
+                    <div id="resultRating" class="text-amber-400 text-base tracking-widest">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <!-- Score Board -->
+                <div class="bg-white rounded-3xl border border-slate-100 p-6 shadow-sm w-full flex flex-col items-center">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Skor Diperoleh</span>
+                    <div class="flex items-baseline text-slate-800">
+                        <span id="resultScore" class="text-5xl font-black font-outfit">0</span>
+                        <span class="text-xl font-bold text-slate-400 font-outfit">/100</span>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p id="resultDesc" class="text-xs text-slate-500 font-medium leading-relaxed px-2">
+                    Maa syaa Allah! Pemahamanmu sangat mendalam. Kamu adalah teladan sejati!
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col gap-3 w-full">
+                    <button onclick="restartQuiz()" class="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 text-emerald-950 font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.97] transition-all text-xs font-outfit">
+                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                        <span>Ulangi Kuis</span>
+                    </button>
+                    <button onclick="exitQuiz()" class="w-full py-3 bg-slate-100 border border-slate-200 text-slate-700 font-semibold rounded-xl flex items-center justify-center gap-2 active:scale-[0.97] transition-all text-xs font-outfit">
+                        <i data-lucide="home" class="w-4 h-4 text-slate-500"></i>
+                        <span>Kembali ke Menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Video Player Modal Overlay (Glassmorphism & animations) -->
         <div id="videoPlayerModal" class="absolute inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex-col justify-center p-5 transition-all duration-300 opacity-0">
             <!-- Floating Close Button -->
@@ -1026,6 +1259,584 @@
             }
         }
         window.addEventListener('DOMContentLoaded', checkPlatform);
+
+        // ==========================================
+        // DATA & LOGIKA INTERAKTIF KUIS
+        // ==========================================
+        const quizData = [
+            // Kuis 1: Ruang Lingkup Ilmu Kalam
+            [
+                {
+                    q: "Secara etimologis, kata 'Kalam' dalam bahasa Arab berarti...",
+                    o: ["Tulisan", "Pembicaraan", "Pendengaran", "Keyakinan"],
+                    a: 1,
+                    e: "Kata Kalam secara etimologis mengandung arti pembicaraan atau kata-kata."
+                },
+                {
+                    q: "Salah satu ciri utama Ilmu Kalam adalah menggunakan...",
+                    o: ["Hanya perasaan", "Rasionalitas dan logika", "Cerita fiksi", "Ramalan bintang"],
+                    a: 1,
+                    e: "Ciri utama Ilmu Kalam adalah rasionalitas (akal) dan argumentasi logis dalam mempertahankan kebenaran teologi."
+                },
+                {
+                    q: "Mengapa Ilmu Kalam dinamakan demikian?",
+                    o: ["Karena sering menggunakan pembicaraan bernalar", "Karena hanya ditulis di atas kertas", "Karena ilmu ini tidak boleh dibicarakan", "Karena diajarkan tanpa bersuara"],
+                    a: 0,
+                    e: "Dinamakan Ilmu Kalam karena objek kajian utamanya dibahas melalui dialog, perdebatan, dan argumentasi lisan yang bernalar."
+                },
+                {
+                    q: "Ilmu Kalam membahas tentang...",
+                    o: ["Tata cara ibadah haji", "Keyakinan/teologi Islam", "Hukum waris", "Sejarah perdagangan Arab"],
+                    a: 1,
+                    e: "Ilmu Kalam memusatkan pembahasannya pada masalah akidah dan keyakinan/teologi dalam Islam."
+                },
+                {
+                    q: "Siapa salah satu nama lain dari Ilmu Kalam?",
+                    o: ["Ilmu Fikih", "Ilmu Ushuluddin", "Ilmu Tasawuf", "Ilmu Nahwu"],
+                    a: 1,
+                    e: "Nama lain dari Ilmu Kalam antara lain adalah Ilmu Ushuluddin, Ilmu Tauhid, dan Al-Fiqh Al-Akbar."
+                },
+                {
+                    q: "Sumber utama pembahasan Ilmu Kalam adalah...",
+                    o: ["Pendapat filosof Yunani", "Al-Qur'an dan Hadis", "Buku sejarah umum", "Logika murni tanpa wahyu"],
+                    a: 1,
+                    e: "Meskipun menggunakan logika, sumber fondasi utama Ilmu Kalam tetaplah wahyu, yaitu Al-Qur'an dan Hadis."
+                },
+                {
+                    q: "Pembahasan utama dalam Ilmu Kalam mencakup hal-hal berikut, kecuali...",
+                    o: ["Sifat-sifat Allah", "Kenabian (Nubuwwat)", "Cara berdagang yang sah", "Hari akhirat (Sam'iyyat)"],
+                    a: 2,
+                    e: "Tata cara perdagangan masuk dalam ranah Ilmu Fikih (Muamalah), bukan Ilmu Kalam."
+                },
+                {
+                    q: "Nilai moderasi beragama dalam Ilmu Kalam mengajarkan kita untuk...",
+                    o: ["Menyalahkan pendapat orang lain", "Saling menghargai perbedaan pemahaman teologis", "Memaksakan keyakinan teologis", "Menghindari diskusi ilmiah"],
+                    a: 1,
+                    e: "Moderasi mengajarkan sikap toleransi dan menghargai perbedaan mazhab teologi demi persatuan umat."
+                },
+                {
+                    q: "Mengapa akal diletakkan secara proporsional dalam Ilmu Kalam?",
+                    o: ["Untuk menggantikan kedudukan wahyu", "Membantu memahami teks wahyu secara logis", "Karena akal tidak penting dalam Islam", "Karena akal bertentangan dengan Al-Qur'an"],
+                    a: 1,
+                    e: "Akal dalam Ilmu Kalam berfungsi sebagai alat bantu untuk memahami wahyu secara mendalam dan berargumen secara rasional."
+                },
+                {
+                    q: "Manfaat mempelajari Ilmu Kalam di antaranya adalah...",
+                    o: ["Memperoleh kekayaan materi", "Memperkuat dasar keyakinan keagamaan secara rasional", "Menjadi hakim di pengadilan", "Menghafal seluruh hadis"],
+                    a: 1,
+                    e: "Mempelajari Ilmu Kalam menumbuhkan pemahaman keagamaan yang kokoh berdasarkan dalil naqli dan aqli (akal)."
+                }
+            ],
+            // Kuis 2: Syi'ah & Khawarij
+            [
+                {
+                    q: "Aliran Khawarij pertama kali muncul setelah peristiwa...",
+                    o: ["Perang Badar", "Tahkim (arbitrase) di Perang Siffin", "Hijrah ke Madinah", "Perjanjian Hudaibiyah"],
+                    a: 1,
+                    e: "Kaum Khawarij keluar dari barisan Ali bin Abi Thalib karena menolak peristiwa Tahkim (arbitrase) dengan kubu Muawiyah."
+                },
+                {
+                    q: "Ciri utama kaum Khawarij dalam teologi adalah...",
+                    o: ["Sangat longgar dalam beragama", "Mudah mengkafirkan orang lain yang melakukan dosa besar", "Selalu tunduk pada pemimpin zalim", "Tidak percaya hari akhir"],
+                    a: 1,
+                    e: "Doktrin ekstrem Khawarij menilai pelaku dosa besar telah keluar dari Islam (kafir) dan halal darahnya."
+                },
+                {
+                    q: "Syi'ah adalah aliran teologi yang sangat mengutamakan kepemimpinan...",
+                    o: ["Abu Bakar Ash-Shiddiq", "Umar bin Khattab", "Ali bin Abi Thalib dan keturunannya", "Muawiyah bin Abi Sufyan"],
+                    a: 2,
+                    e: "Syi'ah berkeyakinan bahwa kepemimpinan umat Islam (Imamah) pasca wafatnya Nabi Muhammad adalah hak Ali bin Abi Thalib dan keturunannya."
+                },
+                {
+                    q: "Konsep kepemimpinan suci dan maksum (terjaga dari dosa) dalam Syi'ah disebut...",
+                    o: ["Khilafah", "Imamah", "Syura", "Bai'at"],
+                    a: 1,
+                    e: "Doktrin Imamah meyakini bahwa para Imam adalah pemimpin suci yang ditunjuk secara keturunan dan terjaga dari kesalahan (maksum)."
+                },
+                {
+                    q: "Apa arti kata 'Khawarij' secara bahasa?",
+                    o: ["Orang-orang yang keluar", "Orang-orang yang membela", "Orang-orang yang bersekutu", "Orang-orang yang bersabar"],
+                    a: 0,
+                    e: "Kata Khawarij secara harfiah berarti orang-orang yang keluar (membelot dari barisan kepemimpinan yang sah)."
+                },
+                {
+                    q: "Menurut Khawarij, pelaku dosa besar berstatus...",
+                    o: ["Tetap mukmin", "Kafir dan kekal di neraka", "Munafik tingkat rendah", "Fasik yang dimaafkan"],
+                    a: 1,
+                    e: "Khawarij memvonis bahwa pelaku dosa besar berstatus kafir murtad dan akan kekal di dalam neraka."
+                },
+                {
+                    q: "Golongan Syi'ah yang paling moderat dan dekat dengan Ahlussunnah adalah...",
+                    o: ["Rafidhah", "Ghulat", "Zaidiyah", "Ismailiyah"],
+                    a: 2,
+                    e: "Syi'ah Zaidiyah dinilai paling moderat karena tidak mengkafirkan para sahabat nabi terdahulu (Abu Bakar dan Umar)."
+                },
+                {
+                    q: "Tokoh utama yang dianggap sebagai pendiri doktrin radikal Khawarij di awal kemunculannya adalah...",
+                    o: ["Abdullah bin Wahab al-Rasibi", "Ja'far al-Shadiq", "Hasan al-Basri", "Wasil bin Ata"],
+                    a: 0,
+                    e: "Abdullah bin Wahab al-Rasibi terpilih sebagai pemimpin pertama kaum Khawarij di Harura."
+                },
+                {
+                    q: "Apa pandangan moderat menghadapi perbedaan Syi'ah dan Khawarij?",
+                    o: ["Ikut mengkafirkan kedua golongan tersebut", "Menjadikan sejarah sebagai pelajaran tanpa menebar kebencian hari ini", "Menghapus sejarah tersebut", "Mendirikan aliran baru"],
+                    a: 1,
+                    e: "Moderasi mengajarkan kita untuk mengambil ibrah (pelajaran) sejarah masa lalu tanpa memperpanjang konflik sektarian di masa kini."
+                },
+                {
+                    q: "Konsep menyembunyikan keyakinan asli demi keselamatan diri dalam ajaran Syi'ah disebut...",
+                    o: ["Taqiyyah", "Raj'ah", "Ismah", "Bada'"],
+                    a: 0,
+                    e: "Taqiyyah adalah sikap menyembunyikan identitas teologis demi keselamatan diri di lingkungan yang tidak kondusif."
+                }
+            ],
+            // Kuis 3: Qadariyah & Jabariyah
+            [
+                {
+                    q: "Doktrin utama aliran Jabariyah menyatakan bahwa manusia...",
+                    o: ["Memiliki kehendak bebas mutlak", "Tidak memiliki kehendak bebas (terpaksa/diarahkan sepenuhnya oleh Allah)", "Setara dengan malaikat", "Menentukan takdir Allah"],
+                    a: 1,
+                    e: "Jabariyah meyakini manusia tidak memiliki kehendak bebas dan perbuatannya ditentukan sepenuhnya oleh Allah (fatalisme)."
+                },
+                {
+                    q: "Aliran Qadariyah memiliki pandangan sebaliknya, yaitu bahwa...",
+                    o: ["Manusia tidak bisa berbuat apa-apa", "Manusia memiliki kebebasan penuh atas perbuatannya (Qadar)", "Allah memaksa manusia berbuat jahat", "Takdir tidak pernah ada"],
+                    a: 1,
+                    e: "Qadariyah berpendapat manusia mandiri penuh dalam menciptakan perbuatannya tanpa campur tangan takdir Allah."
+                },
+                {
+                    q: "Siapakah tokoh yang mula-mula menyebarkan paham Qadariyah?",
+                    o: ["Jahm bin Safwan", "Ma'bad al-Juhani", "Abul Hasan al-Asy'ari", "Abu Hanifah"],
+                    a: 1,
+                    e: "Ma'bad al-Juhani adalah tokoh awal yang memproklamirkan gagasan kebebasan kehendak manusia (Qadariyah) di Irak."
+                },
+                {
+                    q: "Jahm bin Safwan adalah tokoh utama yang merumuskan ajaran...",
+                    o: ["Qadariyah", "Jabariyah", "Syi'ah", "Khawarij"],
+                    a: 1,
+                    e: "Paham Jabariyah dirumuskan secara sistematis oleh Jahm bin Safwan, yang juga mendirikan sekte Jahmiyah."
+                },
+                {
+                    q: "Kata 'Jabariyah' berasal dari kata 'jabar' yang berarti...",
+                    o: ["Kebebasan", "Paksaan atau keharusan", "Pilihan", "Keadilan"],
+                    a: 1,
+                    e: "Jabar mengandung makna memaksa. Aliran ini meyakini manusia dipaksa berbuat oleh kehendak mutlak Allah."
+                },
+                {
+                    q: "Pandangan Jabariyah yang ekstrem dapat mengakibatkan sikap...",
+                    o: ["Sangat rajin berikhtiar", "Pasrah malas berusaha dan menyalahkan takdir atas kemaksiatan", "Sombong karena usahanya sendiri", "Terlalu optimis tanpa berdoa"],
+                    a: 1,
+                    e: "Jabariyah ekstrem membuat manusia pasrah secara keliru, melalaikan ikhtiar, dan menggunakan dalih takdir atas kemaksiatan yang dibuat."
+                },
+                {
+                    q: "Aliran Qadariyah muncul sebagai bentuk reaksi terhadap...",
+                    o: ["Kezaliman politik dinasti Umayyah yang menggunakan legitimasi takdir", "Masuknya filsafat Barat", "Serangan tentara Mongol", "Perbedaan fikih shalat"],
+                    a: 0,
+                    e: "Secara sosiopolitik, Qadariyah menentang penguasa Umayyah yang kerap membela kezaliman mereka dengan dalih 'ini sudah takdir Allah'."
+                },
+                {
+                    q: "Nilai moderat/tengah-tengah dari konsep perbuatan manusia diajarkan oleh Ahlussunnah dengan istilah...",
+                    o: ["Jabar murni", "Kasb (ikhtiar manusia di bawah kehendak Allah)", "Qadar mutlak", "Reinkarnasi"],
+                    a: 1,
+                    e: "Konsep Kasb menyeimbangkan: perbuatan manusia diciptakan Allah tetapi manusia memproleh/mengusahakannya secara aktif (ikhtiar)."
+                },
+                {
+                    q: "Menurut paham Qadariyah, jika seseorang berbuat jahat, maka kejahatan itu...",
+                    o: ["Diciptakan oleh Allah tanpa andil manusia", "Diciptakan oleh manusia itu sendiri secara mandiri", "Merupakan khayalan belaka", "Takdir yang tak bisa dihindari"],
+                    a: 1,
+                    e: "Qadariyah meyakini manusia adalah pencipta penuh dari perbuatannya (baik maupun buruk) dan bertanggung jawab mutlak atasnya."
+                },
+                {
+                    q: "Paham Qadariyah secara bahasa diambil dari kata 'Qadara' yang artinya...",
+                    o: ["Memaksa", "Kemampuan/Kekuasaan menentukan", "Pasrah total", "Menulis catatan"],
+                    a: 1,
+                    e: "Qadara berarti memiliki kemampuan/kekuasaan untuk mewujudkan perbuatan secara bebas."
+                }
+            ],
+            // Kuis 4: Murji'ah & Mu'tazilah
+            [
+                {
+                    q: "Nama 'Murji'ah' berasal dari kata 'arja'a' yang berarti...",
+                    o: ["Menolak", "Menunda atau menangguhkan hukum pelaku dosa besar kepada Allah", "Menyegerakan", "Memerangi kemungkaran"],
+                    a: 1,
+                    e: "Arja'a berarti menunda. Golongan ini menunda penghakiman terhadap pelaku dosa besar di dunia ke hadapan pengadilan Allah kelak."
+                },
+                {
+                    q: "Ciri utama teologi Mu'tazilah adalah mengedepankan...",
+                    o: ["Emosi semata", "Akal pikiran/rasionalitas di atas dalil naqli tertentu", "Taklid buta", "Mimpi mistis"],
+                    a: 1,
+                    e: "Mu'tazilah dikenal sebagai aliran rasionalis ekstrem yang meletakkan argumentasi akal sebagai hakim di atas dalil keagamaan."
+                },
+                {
+                    q: "Salah satu dari Lima Ajaran Dasar (Al-Usul al-Khamsah) Mu'tazilah adalah...",
+                    o: ["Al-Jabar", "Al-Adl (Keadilan Allah)", "Al-Imamah", "Al-Taqiyyah"],
+                    a: 1,
+                    e: "Lima dasar Mu'tazilah meliputi: Al-Tawhid, Al-Adl, Al-Wa'd wa al-Wa'id, Al-Manzilah baina al-Manzilatain, dan Amar Ma'ruf Nahi Munkar."
+                },
+                {
+                    q: "Pendiri aliran Mu'tazilah adalah Wasil bin Ata setelah memisahkan diri dari majelis...",
+                    o: ["Ja'far al-Shadiq", "Hasan al-Basri", "Imam Syafi'i", "Abu Hanifah"],
+                    a: 1,
+                    e: "Wasil bin Ata keluar (i'tazala) dari halaqah ilmu Hasan al-Basri di masjid Basrah karena perbedaan pendapat tentang status pelaku dosa besar."
+                },
+                {
+                    q: "Paham Murji'ah berpendapat bahwa iman seseorang...",
+                    o: ["Hilang sepenuhnya jika berbuat dosa besar", "Cukup dalam hati/keyakinan, amal tidak mempengaruhi esensi iman", "Selalu bertambah setiap hari", "Tergantung pada ras rasialnya"],
+                    a: 1,
+                    e: "Murji'ah meyakini perbuatan maksiat tidak membatalkan esensi iman seseorang selama ia tetap meyakini tauhid dalam hati."
+                },
+                {
+                    q: "Konsep posisi di antara dua posisi (Al-Manzilah baina al-Manzilatain) milik Mu'tazilah menyatakan pelaku dosa besar...",
+                    o: ["Kafir seutuhnya", "Mukmin seutuhnya", "Bukan mukmin dan bukan kafir (berada di tengah-tengah)", "Munafik tulen"],
+                    a: 2,
+                    e: "Menurut doktrin ini, pelaku dosa besar berstatus fasik (di antara iman dan kafir) di dunia, namun jika tidak bertobat akan kekal di neraka."
+                },
+                {
+                    q: "Doktrin Mu'tazilah tentang Al-Qur'an menyatakan bahwa Al-Qur'an adalah...",
+                    o: ["Qadim (kekal bersama Allah)", "Makhluk (baru/diciptakan)", "Tulisan manusia biasa", "Berbahasa Yunani kuno"],
+                    a: 1,
+                    e: "Karena berlandaskan tauhid murni yang rasional, Mu'tazilah menyatakan Al-Qur'an adalah makhluk agar tidak ada dua dzat yang qadim (kekal)."
+                },
+                {
+                    q: "Doktrin Mu'tazilah yang mengharuskan amar ma'ruf nahi munkar bahkan dengan kekerasan jika perlu disebut...",
+                    o: ["Al-Tawhid", "Al-Wa'd wa al-Wa'id", "Al-Amr bi al-Ma'ruf wa al-Nahy 'an al-Munkar", "Al-Manzilah"],
+                    a: 2,
+                    e: "Ini adalah dasar kelima yang mewajibkan penegakan kebaikan dan pencegahan kemunkaran dalam masyarakat."
+                },
+                {
+                    q: "Murji'ah muncul awalnya karena...",
+                    o: ["Menolak terlibat pertikaian politik antara Ali, Muawiyah, dan Aisyah", "Ingin menyebarkan filsafat", "Menolak ibadah puasa", "Melawan dominasi Romawi"],
+                    a: 0,
+                    e: "Murji'ah muncul sebagai reaksi netral demi persatuan umat agar tidak terlarut dalam saling mengkafirkan akibat perang saudara sahabat."
+                },
+                {
+                    q: "Konsep 'Al-Wa'd wa al-Wa'id' dalam Mu'tazilah berarti...",
+                    o: ["Allah bebas berbuat apa saja", "Janji memberi pahala dan ancaman siksa Allah pasti terlaksana", "Surga dan neraka belum diciptakan", "Manusia tidak akan disiksa"],
+                    a: 1,
+                    e: "Al-Wa'd wa al-Wa'id menekankan bahwa janji Allah untuk membalas kebaikan dan mengazab kemaksiatan sifatnya pasti terwujud."
+                }
+            ],
+            // Kuis 5: Asy'ariyah & Maturidiyah
+            [
+                {
+                    q: "Pendiri aliran Asy'ariyah adalah...",
+                    o: ["Abu Hamid al-Ghazali", "Abu al-Hasan al-Asy'ari", "Abu Mansur al-Maturidi", "Ahmad bin Hanbal"],
+                    a: 1,
+                    e: "Aliran Asy'ariyah didirikan oleh teolog termasyhur Abu al-Hasan al-Asy'ari pasca keluar dari Mu'tazilah."
+                },
+                {
+                    q: "Aliran Asy'ariyah dan Maturidiyah merupakan representasi utama dari teologi...",
+                    o: ["Syi'ah", "Ahlussunnah wal Jama'ah (Sunni)", "Mu'tazilah", "Khawarij"],
+                    a: 1,
+                    e: "Kedua mazhab teologi ini bersatu membentuk ajaran teologis mayoritas umat Islam, yaitu Ahlussunnah wal Jama'ah (Asy'ariyah-Maturidiyah)."
+                },
+                {
+                    q: "Paham Maturidiyah didirikan oleh Abu Mansur al-Maturidi di daerah...",
+                    o: ["Bagdad, Irak", "Samarkand (Transoxiana/Uzbekistan)", "Kairo, Mesir", "Mekah, Arab Saudi"],
+                    a: 1,
+                    e: "Abu Mansur al-Maturidi lahir dan mengajarkan teologinya di Maturid, Samarkand (kawasan Uzbekistan modern)."
+                },
+                {
+                    q: "Pendekatan teologi Asy'ariyah berada di antara...",
+                    o: ["Tekstualis ekstrem (Khawarij/Hanabilah) dan Rasionalis ekstrem (Mu'tazilah)", "Syi'ah dan Khawarij", "Qadariyah dan Jabariyah ekstrem", "Budaya Arab dan Persia"],
+                    a: 0,
+                    e: "Asy'ariyah mengambil posisi moderat (tawasuth) di antara kaum yang menolak akal (tekstualis) dan yang menolak teks dalil jika berbeda dengan akal (Mu'tazilah)."
+                },
+                {
+                    q: "Konsep 'Kasb' yang diajarkan oleh Abu al-Hasan al-Asy'ari berarti...",
+                    o: ["Manusia menciptakan perbuatannya sendiri secara mandiri", "Perbuatan manusia diciptakan Allah, namun diusahakan oleh manusia", "Manusia tidak punya andil sama sekali", "Perbuatan itu tidak dinilai"],
+                    a: 1,
+                    e: "Kasb berarti perolehan: Allah menciptakan daya dan perbuatan, sedangkan manusia berperan mengarahkan daya tersebut (berikhtiar)."
+                },
+                {
+                    q: "Perbedaan kecil antara Maturidiyah dan Asy'ariyah terletak pada...",
+                    o: ["Maturidiyah memberi porsi akal sedikit lebih besar daripada Asy'ariyah", "Maturidiyah mengkafirkan Asy'ariyah", "Asy'ariyah menolak keberadaan malaikat", "Maturidiyah menolak hari kiamat"],
+                    a: 0,
+                    e: "Maturidiyah Samarkand cenderung menempatkan akal sedikit lebih tinggi dalam mengetahui kewajiban moral dibandingkan Asy'ariyah."
+                },
+                {
+                    q: "Sifat wajib Allah yang berjumlah 20 sering diidentikkan dengan ajaran teologi...",
+                    o: ["Mu'tazilah", "Asy'ariyah", "Jabariyah", "Syi'ah"],
+                    a: 1,
+                    e: "Skema penyusunan 20 Sifat Wajib Allah didasarkan pada formulasi sistematis teolog-teolog bermazhab Asy'ariyah."
+                },
+                {
+                    q: "Sebelum mendirikan alirannya, Abu al-Hasan al-Asy'ari adalah seorang tokoh penting aliran...",
+                    o: ["Murji'ah", "Mu'tazilah", "Khawarij", "Zaidiyah"],
+                    a: 1,
+                    e: "Selama 40 tahun pertamanya, Abu al-Hasan al-Asy'ari adalah murid kesayangan Al-Jubba'i, tokoh besar Mu'tazilah."
+                },
+                {
+                    q: "Mengapa teologi Asy'ariyah dan Maturidiyah sangat diterima luas oleh umat Islam?",
+                    o: ["Karena didukung militer Romawi", "Karena mengintegrasikan wahyu dengan akal sehat secara moderat", "Karena melarang penggunaan logika sama sekali", "Karena ajarannya sangat ekstrem"],
+                    a: 1,
+                    e: "Formula moderat mereka menyeimbangkan wahyu dan akal secara proporsional sehingga selaras dengan fitrah mayoritas umat."
+                },
+                {
+                    q: "Konsep keadilan menurut Asy'ariyah adalah...",
+                    o: ["Allah wajib melakukan yang terbaik untuk makhluk", "Keadilan adalah hak prerogatif Allah untuk menempatkan sesuatu sesuai kehendak-Nya", "Manusia bisa memaksa Allah adil", "Keadilan tidak penting dalam teologi"],
+                    a: 1,
+                    e: "Bagi Asy'ariyah, Allah adalah pemilik mutlak alam semesta. Apapun tindakan Allah terhadap makhluk-Nya adalah adil karena itu milik-Nya."
+                }
+            ]
+        ];
+
+        let currentQuizIndex = 0;
+        let currentQuestionIndex = 0;
+        let quizScore = 0;
+        let selectedOptionIndex = null;
+
+        const quizNames = [
+            "Ruang Lingkup Ilmu Kalam",
+            "Kuis Syi'ah & Khawarij",
+            "Kuis Qadariyah & Jabariyah",
+            "Kuis Murji'ah & Mu'tazilah",
+            "Kuis Asy'ariyah & Maturidiyah"
+        ];
+
+        // Mulai Kuis
+        function startQuiz(index) {
+            currentQuizIndex = index;
+            currentQuestionIndex = 0;
+            quizScore = 0;
+            selectedOptionIndex = null;
+            
+            // Set header judul
+            document.getElementById('activeQuizTitle').textContent = quizNames[index];
+            
+            // Render soal pertama
+            renderQuestion();
+            
+            // Sembunyikan panel kuis utama & tampilkan kuis aktif
+            closePanel('quizPanel');
+            const activePanel = document.getElementById('activeQuizPanel');
+            activePanel.classList.remove('hidden');
+            setTimeout(() => {
+                activePanel.classList.add('active');
+            }, 50);
+        }
+
+        // Tampilkan Pertanyaan
+        function renderQuestion() {
+            const currentQuiz = quizData[currentQuizIndex];
+            const currentQuestion = currentQuiz[currentQuestionIndex];
+            selectedOptionIndex = null;
+
+            // Render informasi nomor soal & progress bar
+            document.getElementById('quizQuestionNum').textContent = `Soal ${currentQuestionIndex + 1}/10`;
+            document.getElementById('quizProgressBar').style.width = `${(currentQuestionIndex + 1) * 10}%`;
+            document.getElementById('quizQuestionText').textContent = currentQuestion.q;
+
+            // Render opsi jawaban
+            const optionButtons = document.querySelectorAll('.quiz-option');
+            optionButtons.forEach((btn, index) => {
+                btn.style.pointerEvents = 'auto';
+                
+                // Kembalikan ke style semula
+                btn.className = "quiz-option w-full p-4 bg-white border border-slate-100 hover:border-emerald-300 active:scale-[0.98] transition-all rounded-2xl flex items-center gap-3 text-left";
+                
+                const span = btn.querySelector('span');
+                span.className = "w-7 h-7 shrink-0 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs font-outfit uppercase";
+                
+                const p = btn.querySelector('p');
+                p.textContent = currentQuestion.o[index];
+            });
+
+            // Sembunyikan box feedback & disable tombol lanjut
+            document.getElementById('quizFeedbackBox').classList.add('hidden');
+            document.getElementById('quizNextBtn').disabled = true;
+        }
+
+        // Pilih Jawaban
+        function selectOption(optIndex) {
+            if (selectedOptionIndex !== null) return; // Kunci jika sudah memilih
+            
+            selectedOptionIndex = optIndex;
+            const currentQuiz = quizData[currentQuizIndex];
+            const currentQuestion = currentQuiz[currentQuestionIndex];
+            const correctIndex = currentQuestion.a;
+            
+            const optionButtons = document.querySelectorAll('.quiz-option');
+            
+            // Kunci semua tombol agar tidak bisa di-klik lagi
+            optionButtons.forEach(btn => {
+                btn.style.pointerEvents = 'none';
+            });
+            
+            const selectedBtn = optionButtons[optIndex];
+            const correctBtn = optionButtons[correctIndex];
+            const isCorrect = (optIndex === correctIndex);
+            
+            if (isCorrect) {
+                // Style Benar pada tombol yang dipilih
+                selectedBtn.classList.replace('bg-white', 'bg-emerald-50');
+                selectedBtn.classList.replace('border-slate-100', 'border-emerald-500');
+                const span = selectedBtn.querySelector('span');
+                span.classList.replace('bg-slate-100', 'bg-emerald-500');
+                span.classList.replace('text-slate-600', 'text-white');
+                
+                quizScore += 10;
+                
+                // Box feedback sukses
+                const feedbackBox = document.getElementById('quizFeedbackBox');
+                feedbackBox.classList.remove('hidden');
+                feedbackBox.className = "p-4 rounded-2xl border text-xs leading-relaxed flex flex-col gap-1 transition-all bg-emerald-50 border-emerald-200 text-emerald-950 shadow-sm";
+                document.getElementById('quizFeedbackStatus').textContent = "Masya Allah, Benar! 🎉";
+                document.getElementById('quizFeedbackText').textContent = currentQuestion.e;
+            } else {
+                // Style Salah pada tombol yang dipilih
+                selectedBtn.classList.replace('bg-white', 'bg-rose-50');
+                selectedBtn.classList.replace('border-slate-100', 'border-rose-500');
+                const span = selectedBtn.querySelector('span');
+                span.classList.replace('bg-slate-100', 'bg-rose-500');
+                span.classList.replace('text-slate-600', 'text-white');
+                
+                // Style Benar pada tombol jawaban yang benar (sebagai kunci jawaban)
+                correctBtn.classList.replace('bg-white', 'bg-emerald-50');
+                correctBtn.classList.replace('border-slate-100', 'border-emerald-500');
+                const correctSpan = correctBtn.querySelector('span');
+                correctSpan.classList.replace('bg-slate-100', 'bg-emerald-500');
+                correctSpan.classList.replace('text-slate-600', 'text-white');
+                
+                // Box feedback salah
+                const feedbackBox = document.getElementById('quizFeedbackBox');
+                feedbackBox.classList.remove('hidden');
+                feedbackBox.className = "p-4 rounded-2xl border text-xs leading-relaxed flex flex-col gap-1 transition-all bg-rose-50 border-rose-200 text-rose-950 shadow-sm";
+                document.getElementById('quizFeedbackStatus').textContent = "Kurang Tepat! ❌";
+                document.getElementById('quizFeedbackText').textContent = currentQuestion.e;
+            }
+            
+            // Aktifkan tombol Lanjutkan
+            document.getElementById('quizNextBtn').disabled = false;
+        }
+
+        // Lanjut ke Pertanyaan Berikutnya
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < 10) {
+                renderQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        // Tampilkan Layar Hasil Kuis
+        function showQuizResults() {
+            // Sembunyikan panel kuis aktif
+            const activePanel = document.getElementById('activeQuizPanel');
+            activePanel.classList.remove('active');
+            setTimeout(() => {
+                activePanel.classList.add('hidden');
+            }, 300);
+
+            // Tampilkan panel hasil
+            const resultPanel = document.getElementById('quizResultPanel');
+            resultPanel.classList.remove('hidden');
+            
+            // Konfigurasi gimmick berdasarkan skor
+            const sticker = document.getElementById('resultSticker');
+            const title = document.getElementById('resultTitle');
+            const rating = document.getElementById('resultRating');
+            const desc = document.getElementById('resultDesc');
+            
+            if (quizScore === 100) {
+                sticker.textContent = "👑";
+                title.textContent = "Muthmainnah (Sempurna)";
+                rating.textContent = "⭐⭐⭐⭐⭐";
+                desc.textContent = "Maa syaa Allah! Jawabanmu benar semua. Pemahamanmu tentang materi teologi ini sangat sempurna!";
+                // Ledakan konfeti seru
+                setTimeout(triggerConfetti, 350);
+            } else if (quizScore >= 70) {
+                sticker.textContent = "🌟";
+                title.textContent = "Mumtaz (Sangat Bagus)";
+                rating.textContent = "⭐⭐⭐⭐";
+                desc.textContent = "Alhamdulillah! Hasil yang sangat baik. Kamu sudah menguasai sebagian besar materi teologi ini!";
+                setTimeout(triggerConfetti, 350);
+            } else if (quizScore >= 40) {
+                sticker.textContent = "📚";
+                title.textContent = "Jayyid (Cukup Baik)";
+                rating.textContent = "⭐⭐⭐";
+                desc.textContent = "Bagus! Kamu sudah memahami dasar-dasarnya. Yuk baca kembali e-modulnya agar pemahamanmu makin mantap!";
+            } else {
+                sticker.textContent = "✍️";
+                title.textContent = "Mujtahid (Terus Berjuang)";
+                rating.textContent = "⭐";
+                desc.textContent = "Jangan patah semangat! Menuntut ilmu adalah perjuangan. Baca materi di menu utama dan coba lagi kuisnya!";
+            }
+
+            // Animasi menghitung skor dari 0 ke skor akhir
+            const scoreEl = document.getElementById('resultScore');
+            let currentDisplayScore = 0;
+            scoreEl.textContent = "0";
+            
+            const scoreInterval = setInterval(() => {
+                if (currentDisplayScore >= quizScore) {
+                    scoreEl.textContent = quizScore;
+                    clearInterval(scoreInterval);
+                } else {
+                    currentDisplayScore += 10;
+                    scoreEl.textContent = currentDisplayScore;
+                }
+            }, 60);
+        }
+
+        // Ulangi Kuis Saat Ini
+        function restartQuiz() {
+            document.getElementById('quizResultPanel').classList.add('hidden');
+            startQuiz(currentQuizIndex);
+        }
+
+        // Keluar ke Daftar Kuis
+        function exitQuiz() {
+            document.getElementById('quizResultPanel').classList.add('hidden');
+            openPanel('quizPanel');
+        }
+
+        // Tombol Back di Header Kuis
+        function confirmExitActiveQuiz() {
+            document.getElementById('activeQuizPanel').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('activeQuizPanel').classList.add('hidden');
+            }, 300);
+            openPanel('quizPanel');
+        }
+
+        // Gimmick Confetti Particle Generator
+        function triggerConfetti() {
+            const container = document.getElementById('confettiContainer');
+            container.innerHTML = ''; // Reset
+            
+            const colors = ['#f59e0b', '#10b981', '#3b82f6', '#ec4899', '#8b5cf6', '#14b8a6'];
+            
+            for (let i = 0; i < 70; i++) {
+                const particle = document.createElement('div');
+                particle.className = "absolute rounded-full opacity-80 pointer-events-none";
+                
+                // Randomize properties
+                const size = 6 + Math.random() * 8;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '-20px';
+                
+                // Dynamics
+                const duration = 2.5 + Math.random() * 2.5; // 2.5s to 5s
+                const delay = Math.random() * 1.2;
+                const rotation = Math.random() * 720;
+                
+                particle.style.transition = `transform ${duration}s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s, opacity ${duration}s ease ${delay}s`;
+                
+                container.appendChild(particle);
+                
+                // Animate down
+                setTimeout(() => {
+                    particle.style.transform = `translateY(${window.innerHeight + 50}px) rotate(${rotation}deg) scale(${0.5 + Math.random()})`;
+                    particle.style.opacity = '0';
+                }, 50);
+            }
+        }
+
     </script>
 </body>
 </html>
