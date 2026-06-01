@@ -624,20 +624,29 @@
             </div>
         </div>
 
-        <!-- Video Player Modal Overlay -->
-        <div id="videoPlayerModal" class="absolute inset-0 z-50 bg-slate-950/95 hidden flex-col justify-center p-4">
-            <div class="absolute top-4 right-4 z-50">
-                <button onclick="closeVideoPlayer()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-all">
-                    <i data-lucide="x" class="w-6 h-6"></i>
+        <!-- Video Player Modal Overlay (Glassmorphism & animations) -->
+        <div id="videoPlayerModal" class="absolute inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex-col justify-center p-5 transition-all duration-300 opacity-0">
+            <!-- Floating Close Button -->
+            <div class="absolute top-6 right-6 z-50">
+                <button onclick="closeVideoPlayer()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 backdrop-blur-md text-white flex items-center justify-center active:scale-90 transition-all shadow-lg">
+                    <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
-            <div class="w-full max-w-2xl mx-auto flex flex-col gap-4">
-                <div class="w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-2xl relative border border-white/10">
+            
+            <div class="w-full max-w-[340px] mx-auto flex flex-col gap-4 scale-95 transition-transform duration-300" id="videoPlayerContainer">
+                <!-- Video Cover Container with Amber Accent -->
+                <div class="w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-[0_15px_40px_rgba(0,0,0,0.6)] relative border border-amber-400/20">
                     <iframe id="youtubePlayer" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
-                <div class="px-2">
-                    <h4 id="playerVideoTitle" class="font-outfit font-bold text-white text-base">Judul Video</h4>
-                    <p id="playerVideoDesc" class="text-slate-400 text-xs mt-1">Deskripsi video materi pembelajaran</p>
+                
+                <!-- Detail Info Container -->
+                <div class="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-sm shadow-xl">
+                    <div class="flex items-center gap-1.5 mb-1.5">
+                        <span class="bg-amber-400 text-emerald-950 text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">Video Pembelajaran</span>
+                    </div>
+                    <h4 id="playerVideoTitle" class="font-outfit font-bold text-white text-sm leading-snug">Judul Video</h4>
+                    <div class="w-6 h-[1px] bg-amber-400 my-2 rounded-full"></div>
+                    <p id="playerVideoDesc" class="text-slate-300 text-[10px] leading-relaxed">Deskripsi video materi pembelajaran</p>
                 </div>
             </div>
         </div>
@@ -768,9 +777,10 @@
         window.addEventListener('DOMContentLoaded', handleHashRouting);
         window.addEventListener('hashchange', handleHashRouting);
 
-        // Fungsi Pemutar Video In-App (Modal Player Overlay)
+        // Fungsi Pemutar Video In-App (Modal Player Overlay dengan Animasi)
         function playVideo(videoId, title, desc) {
             const playerModal = document.getElementById('videoPlayerModal');
+            const playerContainer = document.getElementById('videoPlayerContainer');
             const playerIframe = document.getElementById('youtubePlayer');
             const playerTitle = document.getElementById('playerVideoTitle');
             const playerDesc = document.getElementById('playerVideoDesc');
@@ -780,14 +790,26 @@
             playerDesc.textContent = desc;
             
             playerModal.classList.remove('hidden');
+            setTimeout(() => {
+                playerModal.classList.remove('opacity-0');
+                playerContainer.classList.remove('scale-95');
+                playerContainer.classList.add('scale-100');
+            }, 50);
         }
         
         function closeVideoPlayer() {
             const playerModal = document.getElementById('videoPlayerModal');
+            const playerContainer = document.getElementById('videoPlayerContainer');
             const playerIframe = document.getElementById('youtubePlayer');
             
-            playerIframe.src = '';
-            playerModal.classList.add('hidden');
+            playerModal.classList.add('opacity-0');
+            playerContainer.classList.remove('scale-100');
+            playerContainer.classList.add('scale-95');
+            
+            setTimeout(() => {
+                playerIframe.src = '';
+                playerModal.classList.add('hidden');
+            }, 300);
         }
 
         // Sembunyikan tombol download APK jika dibuka langsung di dalam aplikasi/APK (WebView)
