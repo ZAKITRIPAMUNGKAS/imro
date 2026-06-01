@@ -103,7 +103,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 20px 20px 80px 20px;
+            padding: 20px 20px 150px 20px;
             color: #04445c;
         }
 
@@ -208,6 +208,7 @@
             box-shadow: 0 15px 25px rgba(0,0,0,0.25);
             z-index: 10;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .image-container img {
@@ -224,6 +225,7 @@
             position: relative;
             width: 100%;
             padding: 0 20px;
+            flex-shrink: 0;
         }
 
         .judul {
@@ -278,6 +280,11 @@
             z-index: 10;
             position: relative;
             margin-top: 25px;
+            flex-shrink: 0;
+        }
+
+        .splash-buttons {
+            flex-shrink: 0;
         }
 
         /* Segel Angka Romawi XI */
@@ -349,7 +356,7 @@
         /* Penyesuaian responsif untuk layar HP kecil/cramped */
         @media (max-width: 400px) {
             #splashScreen {
-                padding: 15px 15px 60px 15px;
+                padding: 15px 15px 130px 15px;
             }
             .wave-top {
                 height: 35%;
