@@ -128,6 +128,19 @@
             pointer-events: none;
         }
 
+        /* Logo E-Modul di bagian atas */
+        .splash-logo {
+            max-width: 140px;
+            height: auto;
+            margin-bottom: 12px;
+            object-fit: contain;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
         /* Header E-Modul Badge */
         .splash-header {
             z-index: 10;
@@ -135,6 +148,9 @@
             margin-bottom: 25px;
             flex-shrink: 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .header-badge {
@@ -385,6 +401,10 @@
             .splash-frame {
                 inset: 10px;
             }
+            .splash-logo {
+                max-width: 100px;
+                margin-bottom: 8px;
+            }
             .splash-header {
                 margin-top: 5px;
                 margin-bottom: 20px;
@@ -459,6 +479,7 @@
             
             <!-- Header E-Modul -->
             <div class="splash-header">
+                <img src="logoemodul.png" alt="Logo E-Modul" class="splash-logo">
                 <span class="header-badge">E-MODUL INTERAKTIF</span>
             </div>
 
