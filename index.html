@@ -646,7 +646,13 @@
                     </div>
                     <h4 id="playerVideoTitle" class="font-outfit font-bold text-white text-sm leading-snug">Judul Video</h4>
                     <div class="w-6 h-[1px] bg-amber-400 my-2 rounded-full"></div>
-                    <p id="playerVideoDesc" class="text-slate-300 text-[10px] leading-relaxed">Deskripsi video materi pembelajaran</p>
+                    <p id="playerVideoDesc" class="text-slate-300 text-[10px] leading-relaxed mb-3.5">Deskripsi video materi pembelajaran</p>
+                    
+                    <!-- Fallback Link Button -->
+                    <a id="playerYoutubeLink" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 w-full py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl text-[10.5px] transition-all hover:scale-[1.01] active:scale-[0.98] font-outfit shadow-md">
+                        <i data-lucide="youtube" class="w-4 h-4 fill-current"></i>
+                        <span>Tonton Langsung di YouTube</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -784,10 +790,12 @@
             const playerIframe = document.getElementById('youtubePlayer');
             const playerTitle = document.getElementById('playerVideoTitle');
             const playerDesc = document.getElementById('playerVideoDesc');
+            const playerLink = document.getElementById('playerYoutubeLink');
             
             playerIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
             playerTitle.textContent = title;
             playerDesc.textContent = desc;
+            playerLink.href = `https://youtu.be/${videoId}`;
             
             playerModal.classList.remove('hidden');
             setTimeout(() => {
