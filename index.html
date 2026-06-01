@@ -825,13 +825,28 @@
                     iframe.classList.remove('active'); // Hide with transition
                     iframe.src = 'about:blank'; // Safe reset
                     window.location.hash = 'home';
+                    
+                    // Inspect iframeHistory to determine which panel to keep open
+                    const lastPage = (iframeHistory && iframeHistory.length > 0) ? iframeHistory[0] : '';
                     iframeHistory = []; // Reset history
                     
-                    // Close all active sliding panels
-                    closePanel('materiPanel');
-                    closePanel('lkpdPanel');
-                    closePanel('evaluasiPanel');
-                    closePanel('videoPanel');
+                    if (lastPage.toLowerCase().startsWith('lkpd')) {
+                        // Keep lkpdPanel open, close others
+                        closePanel('materiPanel');
+                        closePanel('evaluasiPanel');
+                        closePanel('videoPanel');
+                    } else if (lastPage.toLowerCase().includes('karakteristik') || lastPage.toLowerCase().includes('ruang')) {
+                        // Keep materiPanel open, close others
+                        closePanel('lkpdPanel');
+                        closePanel('evaluasiPanel');
+                        closePanel('videoPanel');
+                    } else {
+                        // Close all panels
+                        closePanel('materiPanel');
+                        closePanel('lkpdPanel');
+                        closePanel('evaluasiPanel');
+                        closePanel('videoPanel');
+                    }
                     return;
                 }
 
@@ -875,14 +890,29 @@
                             const prevPage = iframeHistory.pop(); // Remove previous page so it can be re-pushed
                             window.location.hash = '#/' + prevPage;
                         } else {
+                            const firstPage = relativePath;
                             iframe.classList.remove('active'); // Hide with transition
                             iframe.src = 'about:blank';
                             window.location.hash = 'home';
                             iframeHistory = [];
-                            closePanel('materiPanel');
-                            closePanel('lkpdPanel');
-                            closePanel('evaluasiPanel');
-                            closePanel('videoPanel');
+                            
+                            if (firstPage.toLowerCase().startsWith('lkpd')) {
+                                // Keep lkpdPanel open, close others
+                                closePanel('materiPanel');
+                                closePanel('evaluasiPanel');
+                                closePanel('videoPanel');
+                            } else if (firstPage.toLowerCase().includes('karakteristik') || firstPage.toLowerCase().includes('ruang')) {
+                                // Keep materiPanel open, close others
+                                closePanel('lkpdPanel');
+                                closePanel('evaluasiPanel');
+                                closePanel('videoPanel');
+                            } else {
+                                // Close all panels
+                                closePanel('materiPanel');
+                                closePanel('lkpdPanel');
+                                closePanel('evaluasiPanel');
+                                closePanel('videoPanel');
+                            }
                         }
                     });
                 }
