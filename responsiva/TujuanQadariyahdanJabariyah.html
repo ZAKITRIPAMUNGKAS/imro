@@ -205,44 +205,41 @@
     <div class="absolute bottom-0 left-0 w-full bg-white border-t border-slate-200 shadow-[0_-10px_25px_rgba(0,0,0,0.05)] z-50 rounded-t-[2rem] pb-safe">
         <div class="flex justify-around items-center px-2 py-3">
             
-            <!-- Inactive Tab: KI -->
-            <a href="home.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
-                    <i data-lucide="award" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[9px] font-semibold">KI</span>
-            </a>
-            
+                <!-- Inactive Tab: KI -->
+                <a href="home.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
+                        <i data-lucide="award" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-semibold">KI</span>
+                </a>
 
-            <!-- Inactive Tab: KD -->
-            <a href="Ruang Lingkup.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
-                    <i data-lucide="book-open" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[9px] font-semibold">KD</span>
-            </a>
-            
+                <!-- Inactive Tab: KD -->
+                <a href="Ruang Lingkup.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-semibold">KD</span>
+                </a>
 
-            <!-- Inactive Tab: IPK -->
-            <a href="IPKRuangLingkup.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
-                    <i data-lucide="trending-up" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[9px] font-semibold">IPK</span>
-            </a>
-            
+                <!-- Inactive Tab: IPK -->
+                <a href="IPKRuangLingkup.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
+                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-semibold">IPK</span>
+                </a>
 
-            <!-- Inactive Tab: Tujuan -->
-            <a href="TujuanRuanglingkup.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
-                    <i data-lucide="target" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[9px] font-semibold">Tujuan</span>
-            </a>
-            
+                <!-- Inactive Tab: Tujuan -->
+                <a href="TujuanRuanglingkup.html" class="flex flex-col items-center gap-1 min-w-[70px] text-slate-400 hover:text-emerald-600 transition-colors">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-0.5">
+                        <i data-lucide="target" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-[9px] font-semibold">Tujuan</span>
+                </a>
         </div>
     </div>
 
+    
   </div>
 
     <script>
@@ -257,6 +254,22 @@
             } else {
                 menu.classList.add('opacity-0');
                 setTimeout(() => menu.classList.add('hidden'), 200);
+            }
+        }
+
+        // Script untuk toggle bottom sheet menu lainnya
+        function toggleMoreMenu() {
+            const sheet = document.getElementById('moreMenuBottomSheet');
+            const backdrop = document.getElementById('moreMenuBackdrop');
+            if (!sheet || !backdrop) return;
+            if (sheet.classList.contains('translate-y-full')) {
+                sheet.classList.remove('translate-y-full');
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+            } else {
+                sheet.classList.add('translate-y-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
             }
         }
     </script>
