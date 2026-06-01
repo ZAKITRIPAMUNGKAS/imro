@@ -21,7 +21,8 @@ const assets = [
     'lkpd syiah',
     'lkpd jabariyah',
     'lkpd murjiah',
-    'lkpd asyariyah'
+    'lkpd asyariyah',
+    'E-Modul_Ilmu_Kalam.apk'
 ];
 
 console.log('Membersihkan folder www...');
