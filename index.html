@@ -192,13 +192,13 @@
                             <span class="text-[10px] font-semibold text-slate-600">Materi</span>
                         </button>
 
-                        <!-- 4. Video -->
-                        <a href="https://youtube.com/" target="_blank" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
+                        <!-- 4. Video (Buka Panel Video) -->
+                        <button onclick="openPanel('videoPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
                             <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shadow-sm border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                                 <i data-lucide="play-circle" class="w-5 h-5"></i>
                             </div>
                             <span class="text-[10px] font-semibold text-slate-600">Video</span>
-                        </a>
+                        </button>
 
                         <!-- 5. Quiz -->
                         <a href="https://forms.gle/iHSWaqrfJnSdtHu57" target="_blank" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
@@ -436,6 +436,145 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- 5. PANEL VIDEO (Slide In dari Kanan) -->
+        <!-- ========================================== -->
+        <div id="videoPanel" class="absolute inset-0 z-40 bg-slate-50 page-slide-in-right flex flex-col">
+            
+            <!-- App Bar Video (Kubah Style) -->
+            <div class="islamic-pattern bg-emerald-800 pt-6 pb-6 px-4 shadow-lg sticky top-0 z-20 text-white rounded-b-3xl">
+                <div class="flex items-center gap-3 relative z-10">
+                    <button onclick="closePanel('videoPanel')" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all shadow-inner">
+                        <i data-lucide="arrow-left" class="w-5 h-5 text-white"></i>
+                    </button>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl leading-tight">Video Pembelajaran</h2>
+                        <p class="text-xs text-emerald-200 font-light">Media Edukasi Visual</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List Video -->
+            <div class="flex-1 scroll-area overflow-y-auto px-5 pt-6 pb-12 space-y-4 relative">
+                
+                <!-- Elemen Dekorasi Background Latar -->
+                <div class="absolute top-10 right-0 w-32 h-32 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 z-0"></div>
+                <div class="absolute bottom-20 left-0 w-40 h-40 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 z-0"></div>
+
+                <!-- Video Card 1 -->
+                <a href="https://youtu.be/RDmErAG9OME?si=BBFABYDmhd50AVyW" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Ruang Lingkup Ilmu Kalam</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Etimologi, Pengertian & Ruang Lingkup</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 2 -->
+                <a href="https://youtu.be/ckeaHk3KP9c?si=n4fLgzL7XlLceHFW" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Hubungan Ilmu Kalam</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Korelasi dengan Fikih, Tasawuf & Filsafat</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 3 -->
+                <a href="https://youtu.be/M-mIZKcRQ8M?si=zywia8nyA2hfpf0Q" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Aliran Syi'ah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Sejarah kemunculan & doktrin Syi'ah</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 4 -->
+                <a href="https://youtu.be/F0zPBxNzuss?si=uKC0cafSpBP_v0F6" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Aliran Khawarij</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Sejarah tahkim & doktrin teologi Khawarij</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 5 -->
+                <a href="https://youtu.be/u1Clq9MOlfU?si=yJsdn0GUxYVC-52b" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Qadariyah & Jabariyah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Pandangan perbuatan manusia & kehendak bebas</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 6 -->
+                <a href="https://youtu.be/wY-QQ8uKlUs?si=1cgl-I8KkV47eIul" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Aliran Murji'ah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Sejarah timbulnya & konsep penangguhan iman</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 7 -->
+                <a href="https://youtu.be/gpWsEj5j2rg?si=FXX76ngP72yB4UMF" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Aliran Mu'tazilah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Rasionalisme Islam & 5 Ajaran Dasar (Usul al-Khamsah)</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 8 -->
+                <a href="https://youtu.be/5IcBPFMic2E?si=i3bWqDp5KE7SCkNT" target="_blank" class="relative z-10 block bg-white rounded-2xl p-4 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-emerald-50 active:scale-[0.98] transition-all hover:shadow-[0_8px_25px_-5px_rgba(0,0,0,0.1)] hover:border-emerald-100 group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center shadow-sm border border-red-100 group-hover:bg-red-500 group-hover:text-white transition-colors shrink-0">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors">Asy'ariyah & Maturidiyah</h3>
+                            <p class="text-[11px] text-slate-500 mt-1">Latar belakang, tokoh & ajaran Ahlussunnah wal Jama'ah</p>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-emerald-500 transition-colors"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
     </div>
 
     <!-- SCRIPT LOGIKA APLIKASI -->
