@@ -91,9 +91,9 @@
             pointer-events: auto;
         }
 
-        /* --- STYLING SPLASH COVER BARU --- */
+        /* --- STYLING SPLASH COVER BARU (LUXURY GOLD & BLUE THEME) --- */
         #splashScreen {
-            background-color: #f6f5f0; /* Krem terang */
+            background-color: #faf9f6; /* Ivory cream hangat mewah */
             position: absolute;
             inset: 0;
             z-index: 50;
@@ -103,7 +103,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 20px 20px 150px 20px;
+            padding: 40px 24px 60px 24px;
             color: #04445c;
         }
 
@@ -112,339 +112,333 @@
             position: absolute;
             inset: 0;
             background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
-            opacity: 0.15;
+            opacity: 0.12;
             z-index: 1;
             pointer-events: none;
         }
 
-        /* BENTUK MELENGKUNG ATAS & BAWAH */
-        .wave-top {
+        /* Frame Gold Double Border Mewah */
+        .splash-frame {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 280px;
-            background-color: #04445c; /* Biru tua khas */
-            border-bottom-right-radius: 50% 25%;
-            border-bottom-left-radius: 50% 25%;
+            inset: 15px;
+            border: 1px solid rgba(205, 160, 82, 0.4);
+            outline: 3px double rgba(205, 160, 82, 0.2);
+            outline-offset: -5px;
             z-index: 2;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .wave-top::after {
-            content: "";
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background-color: #cda052; /* Warna Emas */
-            border-bottom-right-radius: 50% 25%;
-            border-bottom-left-radius: 50% 25%;
-            z-index: -1;
+            pointer-events: none;
         }
 
-        .wave-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 130px;
-            background-color: #04445c;
-            border-top-right-radius: 50% 40%;
-            border-top-left-radius: 50% 40%;
-            z-index: 2;
-        }
-        .wave-bottom::after {
-            content: "";
-            position: absolute;
-            top: -6px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background-color: #cda052;
-            border-top-right-radius: 50% 40%;
-            border-top-left-radius: 50% 40%;
-            z-index: -1;
-        }
-
-        /* SIDEBAR E-MODUL (Kiri Atas) */
-        .emodul-sidebar {
-            position: absolute;
-            top: 100px;
-            left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+        /* Header E-Modul Badge */
+        .splash-header {
             z-index: 10;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            flex-shrink: 0;
+            text-align: center;
         }
 
-        .emodul-circle {
-            width: 34px;
-            height: 34px;
-            background-color: #04445c;
-            color: white;
+        .header-badge {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #04445c;
+            border: 1.5px solid #04445c;
+            padding: 5px 16px;
+            border-radius: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background-color: rgba(250, 249, 246, 0.95);
+        }
+
+        /* Medali Ilustrasi Utama */
+        .splash-medallion {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
+            background-color: #fff;
+            border: 4px solid #ffffff;
+            outline: 3px solid #cda052;
+            outline-offset: -1px;
+            box-shadow: 0 12px 30px rgba(4, 68, 92, 0.18);
+            z-index: 10;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-            border: 1px solid #cda052; /* gold border for premium touch */
-        }
-
-        /* GAMBAR BUKU LINGKARAN */
-        .image-container {
-            position: relative;
-            margin-top: 130px; /* Jarak dari atas */
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            background-color: #fff;
-            border: 6px solid #ffffff; /* Border putih */
-            outline: 4px solid #cda052; /* Border emas luar */
-            outline-offset: -1px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.25);
-            z-index: 10;
-            overflow: hidden;
             flex-shrink: 0;
         }
 
-        .image-container img {
+        .medallion-inner {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .medallion-inner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* AREA TEKS (Tengah) */
-        .text-content {
+        /* Area Judul */
+        .splash-title-area {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 25px;
             z-index: 10;
-            position: relative;
             width: 100%;
-            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             flex-shrink: 0;
         }
 
-        .judul {
+        .splash-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 3.8rem;
+            font-size: 3.4rem;
             font-weight: 700;
             color: #04445c;
             line-height: 1.1;
-            margin-bottom: 0px;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            margin: 0;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.05);
         }
 
-        .subjudul {
+        .splash-subtitle {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
-            color: #04445c;
+            color: #cda052;
             font-weight: 400;
             margin-top: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        /* Garis Pemisah dengan wajik */
-        .separator {
+        /* Pembatas Emas */
+        .splash-divider {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 70%;
-            margin: 0 auto 25px auto;
+            width: 50%;
+            margin: 0 auto;
+            gap: 10px;
         }
-        .separator .line {
+
+        .divider-line {
+            height: 1px;
+            background-color: rgba(205, 160, 82, 0.6);
             flex: 1;
-            height: 2px;
-            background-color: #cda052;
         }
-        .separator .diamond {
-            width: 10px;
-            height: 10px;
+
+        .divider-star {
+            color: #04445c;
+            font-size: 0.8rem;
+        }
+
+        /* Badge Kelas XI */
+        .splash-class-badge {
             background-color: #04445c;
-            border: 2px solid #cda052;
-            transform: rotate(45deg);
-            margin: 0 15px;
+            color: #ffffff;
+            border: 1px solid #cda052;
+            border-radius: 30px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 4px 20px;
+            margin-top: 15px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(4, 68, 92, 0.15);
         }
 
-        /* AREA INFO (Bawah) */
-        .info-footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            width: 100%;
-            padding: 0 30px;
+        /* Kartu Informasi Penulis (Label Buku Premium) */
+        .splash-meta-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1.5px solid rgba(205, 160, 82, 0.35);
+            border-radius: 18px;
+            padding: 18px;
+            width: 90%;
+            max-width: 320px;
+            box-shadow: 0 8px 24px rgba(4, 68, 92, 0.05);
             z-index: 10;
-            position: relative;
-            margin-top: 25px;
+            margin-top: 30px;
+            text-align: center;
             flex-shrink: 0;
         }
 
-        .splash-buttons {
-            flex-shrink: 0;
-        }
-
-        /* Segel Angka Romawi XI */
-        .segel-xi {
-            width: 85px;
-            height: 85px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            border: 2px solid #04445c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        /* Garis putus-putus dalam segel */
-        .segel-xi::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            border-radius: 50%;
-            border: 2px dashed #04445c;
-        }
-        /* Garis emas luar segel */
-        .segel-xi::after {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border-radius: 50%;
-            border: 2px solid #cda052;
-        }
-        .segel-xi span {
+        .meta-inst {
             font-family: 'Oswald', sans-serif;
-            font-size: 2.6rem;
+            font-size: 1rem;
             font-weight: 700;
             color: #04445c;
-            z-index: 2;
-        }
-
-        /* Garis Vertikal */
-        .garis-vertikal {
-            width: 2px;
-            height: 75px;
-            background-color: #cda052;
-        }
-
-        /* Teks Info Institusi */
-        .info-teks {
-            text-align: left;
-            color: #04445c;
-        }
-        .info-teks h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 6px;
+            line-height: 1.3;
+            margin: 0 0 12px 0;
             letter-spacing: 0.5px;
         }
-        .info-teks p {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            font-weight: 600;
-            color: #333;
+
+        .meta-authors {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            border-top: 1px solid rgba(205, 160, 82, 0.2);
+            padding-top: 10px;
         }
 
-        /* Penyesuaian responsif untuk layar HP kecil/cramped */
+        .meta-authors p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            margin: 0;
+            color: #475569;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .meta-authors p span {
+            color: #04445c;
+            font-weight: 700;
+        }
+
+        /* Tombol Navigasi */
+        .splash-action-area {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 90%;
+            max-width: 280px;
+            z-index: 10;
+            margin-top: 30px;
+            flex-shrink: 0;
+        }
+
+        .splash-action-area .btn-primary {
+            width: 100%;
+            padding: 14px 0;
+            background-color: #04445c;
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            border: 1px solid #cda052;
+            box-shadow: 0 6px 15px rgba(4, 68, 92, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .splash-action-area .btn-primary:active {
+            transform: scale(0.97);
+            background-color: #033446;
+        }
+
+        .splash-action-area .btn-secondary {
+            width: 100%;
+            padding: 10px 0;
+            background-color: white;
+            color: #04445c;
+            font-weight: 600;
+            border-radius: 9999px;
+            border: 1px solid rgba(205, 160, 82, 0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.2s;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .splash-action-area .btn-secondary:active {
+            transform: scale(0.97);
+            background-color: #f8fafc;
+        }
+
+        /* Footer Info */
+        .splash-footer-info {
+            z-index: 10;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 9px;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+            flex-shrink: 0;
+        }
+
+        /* Penyesuaian responsif layar HP kecil */
         @media (max-width: 400px) {
             #splashScreen {
-                padding: 15px 15px 130px 15px;
+                padding: 30px 16px 40px 16px;
             }
-            .wave-top {
-                height: 210px;
-                border-bottom-right-radius: 50% 20%;
-                border-bottom-left-radius: 50% 20%;
+            .splash-frame {
+                inset: 10px;
             }
-            .wave-top::after {
-                border-bottom-right-radius: 50% 20%;
-                border-bottom-left-radius: 50% 20%;
+            .splash-header {
+                margin-top: 5px;
+                margin-bottom: 20px;
             }
-            .wave-bottom {
-                height: 95px;
-                border-top-right-radius: 50% 30%;
-                border-top-left-radius: 50% 30%;
+            .header-badge {
+                font-size: 0.7rem;
+                padding: 4px 12px;
             }
-            .wave-bottom::after {
-                border-top-right-radius: 50% 30%;
-                border-top-left-radius: 50% 30%;
+            .splash-medallion {
+                width: 160px;
+                height: 160px;
             }
-            .emodul-sidebar {
-                top: 75px;
-                left: 10px;
-                gap: 4px;
+            .splash-title-area {
+                margin-top: 20px;
             }
-            .emodul-circle {
-                width: 26px;
-                height: 26px;
-                font-size: 0.85rem;
-            }
-            .image-container {
-                margin-top: 95px;
-                width: 200px;
-                height: 200px;
-                border-width: 4px;
-                outline-width: 3px;
-            }
-            .judul {
+            .splash-title {
                 font-size: 2.8rem;
             }
-            .subjudul {
-                font-size: 1.6rem;
+            .splash-subtitle {
+                font-size: 1.8rem;
                 margin-top: 3px;
                 margin-bottom: 8px;
             }
-            .separator {
-                margin: 0 auto 15px auto;
+            .splash-class-badge {
+                font-size: 0.85rem;
+                padding: 3px 16px;
+                margin-top: 10px;
             }
-            .segel-xi {
-                width: 65px;
-                height: 65px;
+            .splash-meta-card {
+                padding: 14px;
+                margin-top: 20px;
+                border-radius: 14px;
             }
-            .segel-xi span {
-                font-size: 1.8rem;
-            }
-            .segel-xi::after {
-                inset: -4px;
-            }
-            .segel-xi::before {
-                inset: 3px;
-            }
-            .garis-vertikal {
-                height: 60px;
-            }
-            .info-teks h3 {
+            .meta-inst {
                 font-size: 0.9rem;
+                margin-bottom: 8px;
             }
-            .info-teks p {
+            .meta-authors p {
                 font-size: 0.75rem;
             }
-            .info-footer {
-                gap: 12px;
-                padding: 0 10px;
-                margin-top: 15px;
+            .splash-action-area {
+                margin-top: 20px;
+                gap: 10px;
             }
-            .splash-buttons {
-                margin-top: 10px;
-                margin-bottom: 15px;
-                max-width: 250px !important;
+            .splash-action-area .btn-primary {
+                padding: 11px 0;
+                font-size: 0.75rem;
             }
-            .splash-buttons button {
-                padding-top: 10px !important;
-                padding-bottom: 10px !important;
-                font-size: 11px !important;
+            .splash-action-area .btn-secondary {
+                padding: 8px 0;
+                font-size: 0.7rem;
             }
-            .splash-buttons a {
-                padding-top: 8px !important;
-                padding-bottom: 8px !important;
-                font-size: 10px !important;
+            .splash-footer-info {
+                margin-top: 25px;
             }
         }
     </style>
@@ -460,72 +454,60 @@
         <!-- 1. SPLASH SCREEN -->
         <!-- ========================================== -->
         <div id="splashScreen" class="page-slide-up">
+            <!-- Frame Gold Elegan -->
+            <div class="splash-frame"></div>
             
-            <!-- Bentuk Latar Melengkung -->
-            <div class="wave-top"></div>
-            <div class="wave-bottom"></div>
-
-            <!-- Sidebar Bulat "E-MODUL" -->
-            <div class="emodul-sidebar">
-                <div class="emodul-circle">E</div>
-                <div class="emodul-circle">-</div>
-                <div class="emodul-circle">M</div>
-                <div class="emodul-circle">O</div>
-                <div class="emodul-circle">D</div>
-                <div class="emodul-circle">U</div>
-                <div class="emodul-circle">L</div>
+            <!-- Header E-Modul -->
+            <div class="splash-header">
+                <span class="header-badge">E-MODUL INTERAKTIF</span>
             </div>
 
-            <!-- Gambar Utama Buku (Gambar Custom Vector) -->
-            <div class="image-container">
-                <img src="cover_book.png" alt="Kitab Ilmu Kalam">
-            </div>
-
-            <!-- Teks Judul -->
-            <div class="text-content">
-                <h1 class="judul">ILMU KALAM</h1>
-                <p class="subjudul">Berbasis Discovery Learning</p>
-                
-                <div class="separator">
-                    <div class="line"></div>
-                    <div class="diamond"></div>
-                    <div class="line"></div>
+            <!-- Gambar Utama Buku (Medali Gold) -->
+            <div class="splash-medallion">
+                <div class="medallion-inner">
+                    <img src="cover_book.png" alt="Kitab Ilmu Kalam">
                 </div>
             </div>
 
-            <!-- Tombol Mulai / Pilihan Web vs APK -->
-            <div class="splash-buttons flex flex-col gap-3 items-center justify-center w-full max-w-[280px] z-20 relative mt-2 mb-4">
-                <!-- Lanjutkan (Web) -->
-                <button onclick="startApp()" class="w-full py-3.5 bg-[#04445c] text-white hover:bg-[#033446] border border-[#cda052] font-bold rounded-full shadow-[0_4px_12px_rgba(4,68,92,0.3)] flex items-center justify-center gap-2 active:scale-[0.97] transition-all text-xs font-outfit tracking-wide">
+            <!-- Area Judul -->
+            <div class="splash-title-area">
+                <h1 class="splash-title">ILMU KALAM</h1>
+                <p class="splash-subtitle">Berbasis Discovery Learning</p>
+                
+                <div class="splash-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-star">❖</span>
+                    <span class="divider-line"></span>
+                </div>
+                
+                <div class="splash-class-badge">KELAS XI</div>
+            </div>
+
+            <!-- Kartu Metadata (Label Buku Premium) -->
+            <div class="splash-meta-card">
+                <h3 class="meta-inst">MADRASAH ALIYAH PEMINATAN KEAGAMAAN</h3>
+                <div class="meta-authors">
+                    <p class="meta-author"><span>Oleh:</span> Imro Atun Sakurina, S.Pd</p>
+                    <p class="meta-supervisor"><span>Pembimbing:</span> Dr. Khuriyah, S.Ag. M.Pd</p>
+                </div>
+            </div>
+
+            <!-- Tombol Navigasi / Unduh APK -->
+            <div class="splash-action-area">
+                <button onclick="startApp()" class="btn-primary">
                     <span>Mulai Pembelajaran</span>
-                    <i data-lucide="arrow-right" class="w-4 h-4 text-amber-400 animate-pulse"></i>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-amber-300"></i>
                 </button>
-                <!-- Unduh APK -->
-                <a id="downloadApkBtn" href="E-Modul_Ilmu_Kalam.apk" download class="w-full py-2.5 bg-white border border-[#cda052] text-[#04445c] font-semibold rounded-full flex items-center justify-center gap-2 active:scale-[0.97] hover:bg-slate-50 transition-all text-[11px] font-outfit shadow-sm">
-                    <i data-lucide="download" class="w-3.5 h-3.5 text-amber-500"></i>
+                <a id="downloadApkBtn" href="E-Modul_Ilmu_Kalam.apk" download class="btn-secondary">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
                     <span>Unduh Aplikasi APK</span>
                 </a>
             </div>
 
-            <!-- Info Bagian Bawah -->
-            <div class="info-footer">
-                <div class="segel-xi">
-                    <span>XI</span>
-                </div>
-                
-                <div class="garis-vertikal"></div>
-                
-                <div class="info-teks">
-                    <h3>MADRASAH ALIYAH<br>PEMINATAN KEAGAMAAN</h3>
-                    <p>Oleh : Imro Atun Sakurina, S.Pd</p>
-                    <p>Dosen Pembimbing :<br>Dr. Khuriyah, S.Ag. M.Pd</p>
-                </div>
-            </div>
-
-            <!-- Info Versi & Pengembang -->
-            <div class="absolute bottom-3 text-[10px] text-white/60 z-30 flex flex-col items-center gap-0.5">
+            <!-- Footer Versi & Pengembang -->
+            <div class="splash-footer-info">
                 <span>Versi 1.1.0</span>
-                <span class="italic">developed by <span class="font-bold text-amber-400">gemala.dev</span></span>
+                <span>developed by <span class="text-amber-500 font-semibold">gemala.dev</span></span>
             </div>
         </div>
 
