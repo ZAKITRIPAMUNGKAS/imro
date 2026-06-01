@@ -216,13 +216,13 @@
                             <span class="text-[10px] font-semibold text-slate-600">Quiz</span>
                         </a>
 
-                        <!-- 6. Evaluasi -->
-                        <a href="https://forms.gle/pPUS2ui8Vz6ybWB86" target="_blank" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
+                        <!-- 6. Evaluasi (Buka Panel Evaluasi) -->
+                        <button onclick="openPanel('evaluasiPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
                             <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shadow-sm border border-emerald-100 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                                 <i data-lucide="clipboard-check" class="w-5 h-5"></i>
                             </div>
                             <span class="text-[10px] font-semibold text-slate-600">Evaluasi</span>
-                        </a>
+                        </button>
 
                         <!-- 7. LKPD (Buka Panel Dalam) -->
                         <button onclick="openPanel('lkpdPanel')" class="menu-btn flex flex-col items-center gap-2 text-center text-decoration-none group">
@@ -434,6 +434,68 @@
                         <div class="flex-1 py-1">
                             <span class="text-[10px] font-bold uppercase tracking-wider text-violet-100 mb-1 block">Tugas 4</span>
                             <h3 class="font-bold text-sm leading-tight">Asy'ariyah & Maturidiyah</h3>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 4B. PANEL EVALUASI (Slide In dari Kanan) -->
+        <!-- ========================================== -->
+        <div id="evaluasiPanel" class="absolute inset-0 z-40 bg-slate-50 page-slide-in-right flex flex-col">
+            
+            <!-- App Bar Evaluasi (Kubah Style) -->
+            <div class="islamic-pattern bg-emerald-800 pt-6 pb-6 px-4 shadow-lg sticky top-0 z-20 text-white rounded-b-3xl">
+                <div class="flex items-center gap-3 relative z-10">
+                    <button onclick="closePanel('evaluasiPanel')" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 active:scale-90 transition-all shadow-inner">
+                        <i data-lucide="arrow-left" class="w-5 h-5 text-white"></i>
+                    </button>
+                    <div>
+                        <h2 class="font-outfit font-bold text-xl leading-tight">Evaluasi Belajar</h2>
+                        <p class="text-xs text-emerald-200 font-light">Pre-Test & Post-Test Uji Kemampuan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List Evaluasi -->
+            <div class="flex-1 scroll-area overflow-y-auto px-5 pt-6 pb-12 space-y-5 relative">
+                
+                <!-- Elemen Dekorasi Background Latar -->
+                <div class="absolute top-10 right-0 w-32 h-32 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 z-0"></div>
+                <div class="absolute bottom-20 left-0 w-40 h-40 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 z-0"></div>
+
+                <!-- Card Pretest -->
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKEIdNLoq5p3pAkkAgBo7x2WdK8GatackjSvUZuvbLFzfHhw/viewform" target="_blank" class="relative z-10 block bg-white rounded-[1.5rem] p-1 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_8px_30px_rgb(245,158,11,0.15)] active:scale-[0.98] transition-all group overflow-hidden">
+                    <div class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-amber-50 to-transparent z-0"></div>
+                    <div class="relative z-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-[1.3rem] p-4 flex items-center gap-4 text-white">
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-inner shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                            <i data-lucide="help-circle" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <div class="flex-1 py-1">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-100 mb-1 block">Uji Awal</span>
+                            <h3 class="font-bold text-sm leading-tight">Pre-Test Evaluasi</h3>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card Posttest -->
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSehqJ1y9sYJ3mOrlYYTlZlnM_RSBng1ZXUaQzNTvGRG1u0QQQ/viewform" target="_blank" class="relative z-10 block bg-white rounded-[1.5rem] p-1 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_8px_30px_rgb(16,185,129,0.15)] active:scale-[0.98] transition-all group overflow-hidden">
+                    <div class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-emerald-50 to-transparent z-0"></div>
+                    <div class="relative z-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-[1.3rem] p-4 flex items-center gap-4 text-white">
+                        <div class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-inner shrink-0 group-hover:rotate-12 transition-transform duration-300">
+                            <i data-lucide="clipboard-check" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <div class="flex-1 py-1">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-100 mb-1 block">Uji Akhir</span>
+                            <h3 class="font-bold text-sm leading-tight">Post-Test Evaluasi</h3>
                         </div>
                         <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/30 transition-colors">
                             <i data-lucide="arrow-right" class="w-4 h-4 text-white"></i>
