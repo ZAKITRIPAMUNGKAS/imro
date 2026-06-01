@@ -440,9 +440,20 @@
         // Inisialisasi ikon Lucide
         lucide.createIcons();
 
+        // Check if hash is #home to bypass splash screen
+        if (window.location.hash === '#home') {
+            const splash = document.getElementById('splashScreen');
+            if (splash) {
+                splash.style.display = 'none';
+            }
+        }
+
         // Logika Splash Screen ke Home Screen
         function startApp() {
             const splash = document.getElementById('splashScreen');
+            
+            // Set hash to #home when starting the app
+            window.location.hash = 'home';
             
             // Animasi menghilang ke atas
             splash.style.transform = 'translateY(-100%)';
